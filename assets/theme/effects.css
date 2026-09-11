@@ -1,0 +1,243 @@
+/* 新主题共用的微交互。正文始终存在于 HTML 中，关闭脚本或动效也不会隐藏内容。 */
+:root {
+  --radius: 12px;
+  --shadow: 0 10px 32px rgba(25, 35, 50, 0.06);
+  --shadow-hover: 0 14px 36px rgba(25, 35, 50, 0.1);
+}
+:root.dark {
+  --shadow: 0 10px 32px rgba(0, 0, 0, 0.16);
+  --shadow-hover: 0 14px 36px rgba(0, 0, 0, 0.24);
+}
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.25s ease;
+}
+.site-header,
+.site-footer,
+.article-card,
+.sidebar-section,
+.tag-list a,
+.theme-toggle,
+.menu-toggle,
+.search-toggle,
+.like-button,
+.button,
+.pagination a {
+  transition:
+    background-color 0.25s ease,
+    color 0.2s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.article-card {
+  counter-increment: entry;
+  animation: reader-enter 0.5s ease backwards;
+}
+.article-list {
+  counter-reset: entry;
+}
+/* 局部模板只提供主题化的栏目标题，文章标题与正文保持可抓取的原始结构。 */
+.theme-list-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 24px;
+  color: var(--accent);
+}
+.theme-list-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.theme-list-count {
+  margin-left: auto;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+.card-index::before {
+  content: counter(entry, decimal-leading-zero);
+}
+.prose h2:target,
+.prose h3:target {
+  color: var(--accent);
+}
+.prose img {
+  border-radius: var(--radius);
+}
+.reader-dialog .reader-dialog-header {
+  background: var(--soft);
+}
+.article-card:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.article-card:nth-child(3) {
+  animation-delay: 0.08s;
+}
+.article-card:nth-child(n + 4) {
+  animation-delay: 0.12s;
+}
+.article-header,
+.archive-header,
+.search-header {
+  animation: reader-enter 0.45s ease backwards;
+}
+@keyframes reader-enter {
+  from {
+    opacity: 0.65;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes menu-enter {
+  from {
+    opacity: 0.5;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.category-list a,
+.toc a {
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    padding-left 0.2s;
+}
+.category-list a:hover {
+  padding-left: 5px;
+}
+.tag-list a:hover {
+  background: var(--soft);
+}
+.theme-toggle:hover svg {
+  transform: rotate(18deg);
+}
+.theme-toggle svg {
+  transition: transform 0.3s ease;
+}
+.site-banners {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.banner-slide {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.55s ease,
+    visibility 0s;
+}
+.banner-slide[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.55s ease,
+    visibility 0s 0.55s;
+}
+.banner-dots button::after {
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease;
+}
+.banner-dots button[aria-current]::after {
+  width: 18px;
+  border-radius: 4px;
+}
+.banner-controls button {
+  min-width: 36px;
+  min-height: 36px;
+}
+.prose {
+  overflow-wrap: break-word;
+}
+.prose img {
+  height: auto;
+}
+.prose blockquote {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.article-shell > article,
+.content-column,
+.site-search,
+.home-sidebar {
+  min-width: 0;
+}
+/* 没有章节标题的短文不保留空目录栏。 */
+.article-shell[data-has-toc="false"] {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 900px;
+}
+.article-shell[data-has-toc="false"] > article {
+  grid-column: 1;
+  grid-row: auto;
+}
+.back-to-top {
+  box-shadow: var(--shadow);
+}
+.site-background .site-header {
+  background-image: none;
+}
+.site-search {
+  --pf-border-radius: var(--radius);
+}
+@media (hover: hover) and (pointer: fine) {
+  .article-card:hover {
+    transform: translateY(-3px);
+  }
+  .button:hover,
+  .like-button:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+}
+@media (max-width: 760px) {
+  .header-inner.navigation-ready > nav.is-open {
+    animation: menu-enter 0.2s ease;
+  }
+  .header-inner.navigation-ready > nav a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .theme-toggle,
+  .search-toggle,
+  .menu-toggle {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .home-sidebar {
+    display: none;
+  }
+  .article-card h2 {
+    font-size: 22px;
+  }
+  .site-footer {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+/* 降低动态效果优先于各主题的动画和光标装饰，避免持续闪动。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
