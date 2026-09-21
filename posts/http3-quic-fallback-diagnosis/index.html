@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="chengguang-glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证 · 酌酒听风</title>
+<meta name="description" content="HTTP/3为什么回退到HTTP/2？从QUIC与UDP关系入手，用浏览器Protocol列和客户端日志定位路径，避免把网页成功当成UDP验证。">
+<meta name="keywords" content="HTTP/3回退,QUIC与UDP,机场UDP支持,代理协议排查">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">
+<meta property="og:title" content="开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证">
+<meta property="og:description" content="HTTP/3为什么回退到HTTP/2？从QUIC与UDP关系入手，用浏览器Protocol列和客户端日志定位路径，避免把网页成功当成UDP验证。">
+<meta property="og:url" content="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="酌酒听风">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证">
+<meta name="twitter:description" content="HTTP/3为什么回退到HTTP/2？从QUIC与UDP关系入手，用浏览器Protocol列和客户端日志定位路径，避免把网页成功当成UDP验证。">
+<meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-21T14:32:05&#43;08:00"><meta property="article:modified_time" content="2026-09-21T14:34:13&#43;08:00"><meta property="article:tag" content="路由分流"><meta property="article:tag" content="QUIC"><meta property="article:tag" content="HTTP/3">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/http3-quic-fallback-diagnosis/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-21T14:34:13+08:00","datePublished":"2026-09-21T14:32:05+08:00","description":"HTTP/3为什么回退到HTTP/2？从QUIC与UDP关系入手，用浏览器Protocol列和客户端日志定位路径，避免把网页成功当成UDP验证。","headline":"开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/http3-quic-fallback-diagnosis/","@type":"WebPage"},"url":"https://zjtf.org/posts/http3-quic-fallback-diagnosis/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/http3-quic-fallback-diagnosis/","name":"开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证","position":2}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/search.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/search.js?v=1.0.10"></script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/viewer.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/reader.css?v=1.0.10">
+<link rel="icon" href="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/artalk.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/artalk.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/theme.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/reader.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/viewer.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/image-viewer.js?v=1.0.10"></script>
+
+<script defer src="https://zjtf.org/assets/theme/interactions.js?v=1.0.10"></script>
+
+
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/skin.css?v=1.0.10">
+<meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D4KYE7Y5C6');
+</script>
+
+</head>
+<body class="article-page glass-page">
+<a class="skip-link" href="#main">跳到正文</a>
+
+<header class="site-header" data-pagefind-ignore><div class="header-inner">
+<a class="brand" href="https://zjtf.org/" aria-label="酌酒听风，返回首页"><img src="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png" alt="酌酒听风标志" width="46" height="46"><span class="brand-name">酌酒听风</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://zjtf.org/">首页</a><a href="https://zjtf.org/categories/cat1/">机场推荐</a><a href="https://zjtf.org/tags/syjc1/">使用教程</a><a href="https://zjtf.org/posts/aboutus/">关于我们</a></nav>
+<a class="search-toggle" href="https://zjtf.org/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索文章" title="搜索文章"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="切换明暗模式">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button><span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单"><svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+</div></header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
+
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风</a></li><li><span aria-current="page">开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证</span></li></ol></nav>
+
+
+<article data-pagefind-body>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-21T14:32:05&#43;08:00">2026-09-21</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
+</header>
+<div class="prose"><p>开启机场代理后，网页访问正常，但开发者工具显示的协议是h2，而不是h3。这并不足以说明节点坏了，也不足以证明UDP正常。一次网页访问只说明那次请求选择的路径取得了相应结果。</p>
+<p>要判断HTTP/3为什么没有出现，先把“网页协议”“代理的传输协议”和“UDP是否按预期转发”分开。本文给出的是诊断方法，没有测试或排名任何机场。</p>
+<h2 id="1-http3quicudp">1. HTTP/3、QUIC和UDP分别处于哪一层</h2>
+<p>HTTP/3把HTTP语义映射到QUIC之上。QUIC的数据包由UDP数据报承载，同时由QUIC提供连接、流、可靠传输与拥塞控制等机制。因此，“基于UDP”不等于应用得到的是没有可靠性保障的文件传输。<a href="https://www.rfc-editor.org/rfc/rfc9000.html#section-1">RFC 9000：QUIC概述</a></p>
+<p>HTTP/3规范同时考虑了连接失败：例如UDP被阻断导致QUIC无法建立时，客户端应尝试使用基于TCP的HTTP版本。这里描述的是协议建议；实际什么时候尝试、如何回退，还取决于具体客户端及网络状态。<a href="https://www.rfc-editor.org/rfc/rfc9114.html#section-3.1">RFC 9114：HTTP/3连接建立</a></p>
+<p>所以，网站继续打开并不矛盾。它可能走了可用的HTTP/2或HTTP/1.1路径。相反，看到h3也只证明对应连接使用了HTTP/3，不能证明所有UDP应用都可用。</p>
+<h2 id="2-">2. 先看真实请求，再看宣传文字</h2>
+<p>以Chrome为例，打开开发者工具的Network面板，在请求表头菜单中显示Protocol列。重新加载待测页面，查看实际网络请求的协议值；官方说明中，h2对应HTTP/2，h3对应HTTP/3。<a href="https://developer.chrome.com/docs/devtools/network/reference">Chrome DevTools：Network功能参考</a></p>
+<p>观察时记录主文档和关键资源，不要只挑一行符合预期的结果。一个页面可能从多个域名加载内容，不同资源使用不同协议并不奇怪。优先选择自己有权访问、且能确认支持HTTP/3的目标；如果目标能力未知，结果就应记为“目标支持情况未知”。</p>
+<p>若请求来自缓存，先确认正在观察的确实是一次网络传输。不要把没有发生新连接的页面刷新作为节点测试结果，也不要公开分享含Cookie或令牌的完整网络日志。</p>
+<h2 id="3-">3. 写下自己到底要验证什么</h2>
+<p>把测试目标写成可观察的问题，例如：</p>
+<blockquote>
+<p>在这台电脑、这个浏览器和这个网站上，开启当前代理配置后，是否能建立HTTP/3请求，并且该请求按预期进入指定代理出站？</p>
+</blockquote>
+<p>这个问题有两个条件：浏览器的请求协议，以及代理路径。仅满足一个，不能代替另一个。</p>
+<p>如果你真正需要的是语音、游戏或其他UDP应用，应该直接验收对应应用的真实任务。HTTP/3页面测试只能作为补充证据，不能把网页成功概括成“UDP全支持”。</p>
+<h2 id="4-">4. 一次只改变一个变量</h2>
+<p>可按下面的记录表进行小规模对照。直连测试只选择当前网络允许正常访问的目标；如果直连本来就无法访问，直接标记“不具备对照条件”。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>网页结果</th>
+<th>请求协议</th>
+<th>客户端路径证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同网络、不经过代理的可用对照</td>
+<td>成功或具体错误</td>
+<td>实际读数</td>
+<td>不适用或预期直连</td>
+</tr>
+<tr>
+<td>同网络、当前代理配置</td>
+<td>成功或具体错误</td>
+<td>实际读数</td>
+<td>命中规则与出站</td>
+</tr>
+<tr>
+<td>同配置、另一个已有节点</td>
+<td>成功或具体错误</td>
+<td>实际读数</td>
+<td>对应出站</td>
+</tr>
+<tr>
+<td>同设备、另一个可信网络</td>
+<td>成功或具体错误</td>
+<td>实际读数</td>
+<td>对应出站</td>
+</tr>
+</tbody>
+</table>
+<p>每一轮都记录浏览器、客户端版本、目标和时间。改变节点后重新发起请求，并注意旧连接仍可能被复用；不要把切换按钮的时刻当作网络路径已经切换的证据。</p>
+<h2 id="5-">5. 将浏览器结果与代理日志对应</h2>
+<p>在同一时间窗口查找目标域名、连接类型、匹配规则和实际出站。如果客户端只提供有限日志，就如实记录缺少的证据，不必为了“证明支持”输出一个确定结论。</p>
+<ul>
+<li><strong>h3出现，且日志表明请求走了预期路径</strong>：可以记录本次目标的HTTP/3测试成功。</li>
+<li><strong>h2出现，网页正常</strong>：记录当前请求使用HTTP/2；继续核对目标能力和网络条件。</li>
+<li><strong>浏览器有请求，客户端看不到对应记录</strong>：先核对接管范围与独立应用配置，不能直接判为节点丢弃UDP。</li>
+<li><strong>更换网络后结果变化</strong>：说明本地网络条件值得继续检查，但仍需排除测试目标或连接复用的差异。</li>
+</ul>
+<p>代理客户端到节点所用的传输方式，和浏览器到目标网站的HTTP版本是不同层面的信息。即使节点名称含有QUIC或某个UDP协议，也不能单凭名字确定浏览器的全部流量会采用HTTP/3。</p>
+<h2 id="6-">6. 验收标准应围绕实际用途</h2>
+<p>如果网页和日常任务稳定，只有h3没有出现，可以先记录兼容性差异，无需为了显示某个协议而大范围调整系统。若应用明确依赖某条UDP路径，则把该应用的成功条件、使用模式和可重复步骤交给服务方核实。</p>
+<p>查看机场推荐或协议评测时，留意作者是否公开了测试目标、客户端模式和路径证据。清楚说明“某次请求回退到h2”，比把所有失败统称为“UDP被封”更有参考价值。</p>
+<p>资料核对日期：2026年9月21日。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/routing/"># 路由分流</a><a href="https://zjtf.org/tags/quic/"># QUIC</a><a href="https://zjtf.org/tags/http3/"># HTTP/3</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/aboutus/">← 上一篇</a><a href="https://zjtf.org/posts/ipv6-proxy-routing-verification/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#1-http3quicudp">1. HTTP/3、QUIC和UDP分别处于哪一层</a><a class="level-2" href="#2-">2. 先看真实请求，再看宣传文字</a><a class="level-2" href="#3-">3. 写下自己到底要验证什么</a><a class="level-2" href="#4-">4. 一次只改变一个变量</a><a class="level-2" href="#5-">5. 将浏览器结果与代理日志对应</a><a class="level-2" href="#6-">6. 验收标准应围绕实际用途</a></nav></aside>
+
+
+</main>
+</div><button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg></button></div>
+
+<footer class="site-footer" data-pagefind-ignore>
+<section class="footer-links" aria-labelledby="friend-links-title"><h2 id="friend-links-title">友情链接</h2>
+<nav class="friend-links" aria-label="友情链接"><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://fengyy.org/" target="_blank" rel="noopener noreferrer">风悠悠</a></nav>
+</section>
+<span class="site-copyright">© 2026 酌酒听风</span>
+</footer>
+
+
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://zjtf.org/pagefind/pagefind-component-ui.js" data-stylesheet="https://zjtf.org/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://zjtf.org/pagefind/" base-url="https://zjtf.org/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/00de813a-5a66-4608-abd5-4eae7b02cbad/","pageTitle":"开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+
+</body>
+</html>

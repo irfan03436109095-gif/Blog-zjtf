@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="核对代理规则、实际出站和不同协议的流量路径。">
 <meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/tags/routing/#collection","@type":"CollectionPage","description":"核对代理规则、实际出站和不同协议的流量路径。","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","position":1,"url":"https://zjtf.org/posts/ipv6-proxy-routing-verification/"}]},"name":"路由分流","url":"https://zjtf.org/tags/routing/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风","position":1},{"@type":"ListItem","item":"https://zjtf.org/tags/routing/","name":"路由分流","position":2}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/tags/routing/#collection","@type":"CollectionPage","description":"核对代理规则、实际出站和不同协议的流量路径。","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","name":"开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证","position":1,"url":"https://zjtf.org/posts/http3-quic-fallback-diagnosis/"},{"@type":"ListItem","name":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","position":2,"url":"https://zjtf.org/posts/ipv6-proxy-routing-verification/"}]},"name":"路由分流","url":"https://zjtf.org/tags/routing/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风","position":1},{"@type":"ListItem","item":"https://zjtf.org/tags/routing/","name":"路由分流","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.0.10">
@@ -76,6 +76,11 @@
 
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
+<h2><a href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证</a></h2>
+<p class="card-summary">网页能打开但协议显示h2，不能直接断言机场不支持UDP。区分网站能力、浏览器选择、代理接管和回退行为，再做同目标对照。</p>
+<div class="card-tags" aria-label="文章分类与标签"><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a><a href="https://zjtf.org/tags/routing/">路由分流</a><a href="https://zjtf.org/tags/quic/">QUIC</a><a href="https://zjtf.org/tags/http3/">HTTP/3</a></div>
+<div class="card-footer"><span class="card-meta"><span>王牌飞行员</span><time datetime="2026-09-21T14:32:05&#43;08:00">2026-09-21</time></span><a class="read-more" href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/" aria-label="阅读全文：开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证">阅读全文</a></div>
+</article><article class="article-card">
 <h2><a href="https://zjtf.org/posts/ipv6-proxy-routing-verification/">IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法</a></h2>
 <p class="card-summary">看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。</p>
 <div class="card-tags" aria-label="文章分类与标签"><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a><a href="https://zjtf.org/tags/ipv6/">IPv6</a><a href="https://zjtf.org/tags/dns/">DNS</a><a href="https://zjtf.org/tags/routing/">路由分流</a></div>
