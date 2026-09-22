@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="chengguang-glass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南 · 酌酒听风</title>
+<meta name="description" content="机场客户端的HTTP、SOCKS5、mixed端口应该怎么填？分清本地入口与远端协议，理解CONNECT及UDP支持边界，用单个应用验证实际接管。">
+<meta name="keywords" content="HTTP代理与SOCKS5,混合代理端口,机场客户端端口,UDP代理">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/http-socks5-mixed-proxy-ports/">
+<meta property="og:title" content="HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南">
+<meta property="og:description" content="机场客户端的HTTP、SOCKS5、mixed端口应该怎么填？分清本地入口与远端协议，理解CONNECT及UDP支持边界，用单个应用验证实际接管。">
+<meta property="og:url" content="https://zjtf.org/posts/http-socks5-mixed-proxy-ports/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="酌酒听风">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南">
+<meta name="twitter:description" content="机场客户端的HTTP、SOCKS5、mixed端口应该怎么填？分清本地入口与远端协议，理解CONNECT及UDP支持边界，用单个应用验证实际接管。">
+<meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-22T11:37:22&#43;08:00"><meta property="article:modified_time" content="2026-09-22T11:39:16&#43;08:00"><meta property="article:tag" content="使用教程"><meta property="article:tag" content="路由分流">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-22T11:39:16+08:00","datePublished":"2026-09-22T11:37:22+08:00","description":"机场客户端的HTTP、SOCKS5、mixed端口应该怎么填？分清本地入口与远端协议，理解CONNECT及UDP支持边界，用单个应用验证实际接管。","headline":"HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/","@type":"WebPage"},"url":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/","name":"HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南","position":2}]}]}</script>
+
+<script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/search.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/search.js?v=1.0.10"></script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/viewer.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/reader.css?v=1.0.10">
+<link rel="icon" href="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/artalk.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/artalk.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/theme.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/reader.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/viewer.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/image-viewer.js?v=1.0.10"></script>
+
+<script defer src="https://zjtf.org/assets/theme/interactions.js?v=1.0.10"></script>
+
+
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/skin.css?v=1.0.10">
+<meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D4KYE7Y5C6');
+</script>
+
+</head>
+<body class="article-page glass-page">
+<a class="skip-link" href="#main">跳到正文</a>
+
+<header class="site-header" data-pagefind-ignore><div class="header-inner">
+<a class="brand" href="https://zjtf.org/" aria-label="酌酒听风，返回首页"><img src="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png" alt="酌酒听风标志" width="46" height="46"><span class="brand-name">酌酒听风</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://zjtf.org/">首页</a><a href="https://zjtf.org/categories/cat1/">机场推荐</a><a href="https://zjtf.org/tags/syjc1/">使用教程</a><a href="https://zjtf.org/posts/aboutus/">关于我们</a></nav>
+<a class="search-toggle" href="https://zjtf.org/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索文章" title="搜索文章"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+<button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="切换明暗模式">
+<svg class="theme-icon-system" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+<svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
+<svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button><span id="theme-mode-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="打开菜单"><svg class="menu-icon-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="menu-icon-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+</div></header>
+
+<div class="article-viewport"><div class="article-scroll">
+<main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
+
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风</a></li><li><span aria-current="page">HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南</span></li></ol></nav>
+
+
+<article data-pagefind-body>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-22T11:37:22&#43;08:00">2026-09-22</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
+</header>
+<div class="prose"><p>应用要求填写 HTTP 或 SOCKS5 代理，而机场订阅里写的是另一种协议，这通常不是冲突。前者描述应用怎样连接本地客户端，后者描述客户端怎样连接远端节点。把两段连接分开，很多“端口填了却不能用”的问题就容易检查。</p>
+<h2 id="heading">先画清楚两段连接</h2>
+<p>常见使用方式可以简化为：</p>
+<p><strong>浏览器或应用 → 本机代理入口 → 客户端内核 → 机场节点 → 目标服务。</strong></p>
+<p>本地入口的协议类型和端口，应从当前正在运行的客户端读取；不能把远端节点端口、管理面板端口或订阅网址填进应用的代理栏。示例教程里的数字也不是所有客户端的通用默认值。</p>
+<p>本文讨论普通应用的显式代理配置。TUN 接管属于另一种路径，不能仅凭应用未填写代理，就判断流量一定没有进入客户端。</p>
+<h2 id="heading-1">三种名称分别表示什么</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用来判断什么</th>
+<th>不能据此保证什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP 代理入口</td>
+<td>应用按HTTP代理方式发送请求</td>
+<td>不保证任意应用的UDP都被代理</td>
+</tr>
+<tr>
+<td>SOCKS5入口</td>
+<td>应用与客户端使用SOCKS5交互</td>
+<td>不保证软件已实现或启用UDP转发</td>
+</tr>
+<tr>
+<td>混合端口</td>
+<td>同一入口可接受HTTP与SOCKS连接</td>
+<td>不等于多条线路叠加或速度翻倍</td>
+</tr>
+</tbody>
+</table>
+<p>RFC 9110 中的 CONNECT 用于建立隧道，成功后双向转发数据；HTTPS 请求可以经这样的隧道建立到目标的 TLS 连接。<a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.6">CONNECT 定义</a></p>
+<p>SOCKS5 标准分别定义 CONNECT 与 UDP ASSOCIATE，后者用于建立 UDP 转发关联，并依赖相关 TCP 控制连接的生命周期。标准具有这项能力，不代表任意应用、客户端和节点组合都已支持。<a href="https://www.rfc-editor.org/rfc/rfc1928.txt">RFC 1928</a></p>
+<p>以 mihomo 为例，其文档分别列出 HTTP、SOCKS 和混合代理端口；混合端口接受 HTTP 与 SOCKS 请求。实际选用时仍需按应用提供的代理类型填写。<a href="https://wiki.metacubex.one/config/inbound/port/">mihomo 代理端口说明</a></p>
+<h2 id="heading-2">怎样给一个应用填写代理</h2>
+<ol>
+<li>在客户端确认当前运行状态和本地监听地址、端口、协议。</li>
+<li>查看目标应用提供哪些代理类型，选择双方都支持的一项。</li>
+<li>同机应用使用客户端实际提供的回环地址与端口；另一台设备不能直接照搬本机地址。</li>
+<li>保存后只发起一次小请求，核对客户端连接记录中是否出现该应用或目标。</li>
+<li>同时记录成功现象或报错原文，再决定是否更换类型。</li>
+</ol>
+<p>不要同时更换节点、DNS、应用代理和系统代理。先保持节点与目标不变，才容易看出修改入口是否有效。应用没有提供某种代理类型时，不能仅靠把类型名称写进地址栏补上支持。</p>
+<h2 id="udp">网页成功为什么不能证明UDP成功</h2>
+<p>可以打开HTTPS网页，只能说明该次请求走通。若你真正需要的是语音、特定游戏或其他使用UDP的功能，应测试那个功能本身，并在客户端可见记录中确认相关流量。</p>
+<p>建议把验收拆成两行：“目标网页请求完成”和“目标UDP功能完成”。后一项没测过就写未测试。即使某项功能正常，也不要扩大成全部UDP应用都兼容。</p>
+<p>遇到网页能用而另一个应用失败，先核对该应用是否真的使用了填写的代理设置，以及它对UDP代理的支持情况，再检查客户端和远端路径。盲目更改端口，无法替代这几层确认。</p>
+<h2 id="heading-3">两个容易混淆的安全边界</h2>
+<p><strong>本地HTTP入口不等于目标网页明文。</strong> 目标是否使用HTTPS、连接怎样经过本地入口、远端节点采用什么传输，属于不同问题。不要只看客户端界面的“HTTP”字样，就给整条链路作安全结论。</p>
+<p><strong>开放局域网访问不是填写端口的必要步骤。</strong> 同机使用先保持现有监听范围。如果确实需要其他设备接入，再单独规划监听地址、访问限制和认证；不要为解决单机连接问题随手对外开放入口。</p>
+<p>最后保留一条简短记录：应用、代理类型、本地入口、实际出站、目标结果。能够说明某条连接怎样成功，才是选择端口类型的有效依据。</p>
+</div>
+<div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/syjc1/"># 使用教程</a><a href="https://zjtf.org/tags/routing/"># 路由分流</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/aboutus/">← 上一篇</a><a href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">下一篇 →</a></nav>
+<section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
+</article>
+<aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">先画清楚两段连接</a><a class="level-2" href="#heading-1">三种名称分别表示什么</a><a class="level-2" href="#heading-2">怎样给一个应用填写代理</a><a class="level-2" href="#udp">网页成功为什么不能证明UDP成功</a><a class="level-2" href="#heading-3">两个容易混淆的安全边界</a></nav></aside>
+
+
+</main>
+</div><button id="back-to-top" class="back-to-top" type="button" aria-label="返回顶部" title="返回顶部" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M12 20V8m-5 5 5-5 5 5"/></svg></button></div>
+
+<footer class="site-footer" data-pagefind-ignore>
+<section class="footer-links" aria-labelledby="friend-links-title"><h2 id="friend-links-title">友情链接</h2>
+<nav class="friend-links" aria-label="友情链接"><a href="https://goflybit.com/#/register?code=gPinVG8C" target="_blank" rel="noopener noreferrer">FlyBit</a><a href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="noopener noreferrer">99吧</a><a href="https://fengyy.org/" target="_blank" rel="noopener noreferrer">风悠悠</a><a href="https://kkjichang.cc/" target="_blank" rel="noopener noreferrer">可靠机场推荐</a><a href="https://pyjichang.cc/" target="_blank" rel="noopener noreferrer">便宜机场推荐</a><a href="https://www.yaoyaolingxian.blog/" target="_blank" rel="noopener noreferrer">遥遥领先</a><a href="https://wdjichang.cc/" target="_blank" rel="noopener noreferrer">稳定机场推荐</a></nav>
+</section>
+<span class="site-copyright">© 2026 酌酒听风</span>
+</footer>
+
+
+
+<dialog id="search-dialog" class="reader-dialog site-search" aria-labelledby="search-title" data-reader-dialog data-pagefind-ignore>
+<header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
+<div class="reader-dialog-body">
+
+<div id="site-search-ui" data-module="https://zjtf.org/pagefind/pagefind-component-ui.js" data-stylesheet="https://zjtf.org/pagefind/pagefind-component-ui.css" hidden>
+
+<pagefind-config bundle-path="https://zjtf.org/pagefind/" base-url="https://zjtf.org/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
+<pagefind-summary></pagefind-summary>
+<pagefind-results></pagefind-results>
+</div>
+<p id="search-status" class="search-status" role="status">正在加载搜索…</p>
+<button id="search-retry" class="button" type="button" hidden>重新加载</button>
+
+</div>
+</dialog>
+
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/1fcdc96f-12ae-4a82-9c95-bbafee9a0468/","pageTitle":"HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+
+</body>
+</html>
