@@ -28,7 +28,7 @@
   const isContentImage = (image) =>
     Boolean(
       (image.currentSrc || image.getAttribute("src")) &&
-      !image.closest("dialog, .viewer-container"),
+      !image.closest("dialog, .viewer-container, [data-ad-link], [data-card-image-link]"),
     );
 
   function localize() {
@@ -162,7 +162,7 @@
   }
 
   function findImage(target, event) {
-    if (!(target instanceof Element) || target.closest("dialog, .viewer-container")) return null;
+    if (!(target instanceof Element) || target.closest("dialog, .viewer-container, [data-ad-link]")) return null;
     const direct = target.closest("img");
     if (direct) return direct;
     // 图片横幅的覆盖层点击放大，右下角“访问链接”继续单独跳转。

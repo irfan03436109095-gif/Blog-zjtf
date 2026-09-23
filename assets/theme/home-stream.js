@@ -71,6 +71,7 @@
       }
       if (stopped) return;
       list.append(fragment);
+      document.dispatchEvent(new CustomEvent('chengguang:articles-added'));
       discovered.forEach(url => articleURLs.add(url));
       visited.add(url);
       visited.add(sourceURL);

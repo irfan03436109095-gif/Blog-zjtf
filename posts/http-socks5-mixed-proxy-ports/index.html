@@ -22,21 +22,23 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-22T11:39:16+08:00","datePublished":"2026-09-22T11:37:22+08:00","description":"机场客户端的HTTP、SOCKS5、mixed端口应该怎么填？分清本地入口与远端协议，理解CONNECT及UDP支持边界，用单个应用验证实际接管。","headline":"HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/","@type":"WebPage"},"url":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/http-socks5-mixed-proxy-ports/","name":"HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.0.10">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/search.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/search.js?v=1.0.10"></script>
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/viewer.css?v=1.0.10">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/reader.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.1.2">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/search.css?v=1.1.2"><script defer src="https://zjtf.org/assets/theme/search.js?v=1.1.2"></script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/viewer.css?v=1.1.2">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/reader.css?v=1.1.2">
 <link rel="icon" href="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/artalk.css?v=1.0.10"><script defer src="https://zjtf.org/assets/theme/artalk.js?v=1.0.10"></script>
-<script defer src="https://zjtf.org/assets/theme/theme.js?v=1.0.10"></script>
-<script defer src="https://zjtf.org/assets/theme/reader.js?v=1.0.10"></script>
-<script defer src="https://zjtf.org/assets/theme/viewer.js?v=1.0.10"></script>
-<script defer src="https://zjtf.org/assets/theme/image-viewer.js?v=1.0.10"></script>
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/artalk.css?v=1.1.2"><script defer src="https://zjtf.org/assets/theme/artalk.js?v=1.1.2"></script>
 
-<script defer src="https://zjtf.org/assets/theme/interactions.js?v=1.0.10"></script>
+<script defer src="https://zjtf.org/assets/theme/theme.js?v=1.1.2"></script>
+<script defer src="https://zjtf.org/assets/theme/reader.js?v=1.1.2"></script>
+<script defer src="https://zjtf.org/assets/theme/viewer.js?v=1.1.2"></script>
+<script defer src="https://zjtf.org/assets/theme/image-viewer.js?v=1.1.2"></script>
+
+<script defer src="https://zjtf.org/assets/theme/interactions.js?v=1.1.2"></script>
 
 
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/skin.css?v=1.0.10">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/advertisements.css?v=1.1.2">
+<link rel="stylesheet" href="https://zjtf.org/assets/theme/skin.css?v=1.1.2">
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -134,7 +136,7 @@
 <nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/curl-socks5h-dns-resolution/">← 上一篇</a><a href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
-<aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">先画清楚两段连接</a><a class="level-2" href="#heading-1">三种名称分别表示什么</a><a class="level-2" href="#heading-2">怎样给一个应用填写代理</a><a class="level-2" href="#udp">网页成功为什么不能证明UDP成功</a><a class="level-2" href="#heading-3">两个容易混淆的安全边界</a></nav></aside>
+<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">先画清楚两段连接</a><a class="level-2" href="#heading-1">三种名称分别表示什么</a><a class="level-2" href="#heading-2">怎样给一个应用填写代理</a><a class="level-2" href="#udp">网页成功为什么不能证明UDP成功</a><a class="level-2" href="#heading-3">两个容易混淆的安全边界</a></nav></aside></div>
 
 
 </main>
