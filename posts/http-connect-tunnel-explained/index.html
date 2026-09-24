@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>socks5与socks5h有什么区别？用curl判断域名在哪一侧解析 · 酌酒听风机场测评</title>
-<meta name="description" content="curl的socks5和socks5h如何选择？解释域名本地解析与代理侧解析，提供相同端口和目标的对照步骤，避免误判DNS与机场故障。">
-<meta name="keywords" content="socks5h,SOCKS5 DNS,curl代理">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/curl-socks5h-dns-resolution/">
-<meta property="og:title" content="socks5与socks5h有什么区别？用curl判断域名在哪一侧解析">
-<meta property="og:description" content="curl的socks5和socks5h如何选择？解释域名本地解析与代理侧解析，提供相同端口和目标的对照步骤，避免误判DNS与机场故障。">
-<meta property="og:url" content="https://zjtf.org/posts/curl-socks5h-dns-resolution/">
+<title>HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道 · 酌酒听风机场测评</title>
+<meta name="description" content="HTTP CONNECT是什么？理解HTTPS经过HTTP代理的隧道建立过程，区分端口拒绝、407认证、隧道失败和TLS证书错误。">
+<meta name="keywords" content="HTTP CONNECT,HTTPS代理,代理协议">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/http-connect-tunnel-explained/">
+<meta property="og:title" content="HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道">
+<meta property="og:description" content="HTTP CONNECT是什么？理解HTTPS经过HTTP代理的隧道建立过程，区分端口拒绝、407认证、隧道失败和TLS证书错误。">
+<meta property="og:url" content="https://zjtf.org/posts/http-connect-tunnel-explained/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="酌酒听风机场测评">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="socks5与socks5h有什么区别？用curl判断域名在哪一侧解析">
-<meta name="twitter:description" content="curl的socks5和socks5h如何选择？解释域名本地解析与代理侧解析，提供相同端口和目标的对照步骤，避免误判DNS与机场故障。">
+<meta name="twitter:title" content="HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道">
+<meta name="twitter:description" content="HTTP CONNECT是什么？理解HTTPS经过HTTP代理的隧道建立过程，区分端口拒绝、407认证、隧道失败和TLS证书错误。">
 <meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-23T13:28:05&#43;08:00"><meta property="article:modified_time" content="2026-09-23T13:29:23&#43;08:00"><meta property="article:tag" content="DNS"><meta property="article:tag" content="路由分流">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/curl-socks5h-dns-resolution/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-23T13:29:23+08:00","datePublished":"2026-09-23T13:28:05+08:00","description":"curl的socks5和socks5h如何选择？解释域名本地解析与代理侧解析，提供相同端口和目标的对照步骤，避免误判DNS与机场故障。","headline":"socks5与socks5h有什么区别？用curl判断域名在哪一侧解析","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/curl-socks5h-dns-resolution/","@type":"WebPage"},"url":"https://zjtf.org/posts/curl-socks5h-dns-resolution/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/curl-socks5h-dns-resolution/","name":"socks5与socks5h有什么区别？用curl判断域名在哪一侧解析","position":2}]}]}</script>
+<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-24T10:16:41&#43;08:00"><meta property="article:modified_time" content="2026-09-24T10:18:16&#43;08:00"><meta property="article:tag" content="路由分流">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/http-connect-tunnel-explained/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-24T10:18:16+08:00","datePublished":"2026-09-24T10:16:41+08:00","description":"HTTP CONNECT是什么？理解HTTPS经过HTTP代理的隧道建立过程，区分端口拒绝、407认证、隧道失败和TLS证书错误。","headline":"HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/http-connect-tunnel-explained/","@type":"WebPage"},"url":"https://zjtf.org/posts/http-connect-tunnel-explained/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/http-connect-tunnel-explained/","name":"HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.1.2">
@@ -69,65 +69,42 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
 
-<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">socks5与socks5h有什么区别？用curl判断域名在哪一侧解析</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道</span></li></ol></nav>
 
 
 <article data-pagefind-body>
-<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">socks5与socks5h有什么区别？用curl判断域名在哪一侧解析</h1>
-<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-23T13:28:05&#43;08:00">2026-09-23</time><span><span id="page-views">—</span> 次阅读</span></div>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-24T10:16:41&#43;08:00">2026-09-24</time><span><span id="page-views">—</span> 次阅读</span></div>
 <div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
 </header>
-<div class="prose"><p>配置机场客户端的 SOCKS 入口时，你可能见过 <code>socks5://</code> 和 <code>socks5h://</code>。在 curl 中，它们最直接的区别是目标主机名由谁解析；多出来的 <code>h</code> 并不表示一种更快的机场协议，也不是加密强度等级。</p>
-<h2 id="heading">两种写法分别做什么</h2>
-<p><a href="https://curl.se/docs/manpage.html">curl 官方手册</a>规定，<code>--socks5</code> 使用本地解析目标主机名，<code>--socks5-hostname</code> 则把目标主机名交给 SOCKS5 代理处理。代理 URL 前缀 <code>socks5://</code> 与 <code>socks5h://</code> 分别对应这两种方式。</p>
-<p>这里的“代理处理”指 curl 连接的那个 SOCKS5 服务端。如果它是电脑上的机场客户端，后续如何选择 DNS、如何分流，还取决于该客户端的配置。不能仅凭 <code>h</code> 就断言最终查询一定发生在远端节点所在国家。</p>
-<h2 id="heading-1">先确认测试前提</h2>
-<p>核对客户端实际启用的 SOCKS 或混合端口，保持节点、分流规则和接入网络不变。下面用 <code>7891</code> 作示例；请替换为自己的端口。<code>example.com</code> 也是示例目标，正式对照应使用你有权访问且出现问题的完整域名。</p>
-<p>Windows 可显式调用 <code>curl.exe</code>，其他系统通常使用 <code>curl</code>。先查看已安装版本的帮助，确认它支持这些参数。不要把订阅链接、账号口令或带令牌的地址放进要公开分享的命令。</p>
-<h2 id="heading-2">只改变解析方式的对照命令</h2>
-<pre><code class="language-text">curl.exe --noproxy &quot;&quot; --proxy socks5://127.0.0.1:7891 --connect-timeout 10 --max-time 20 --head https://example.com/
-curl.exe --noproxy &quot;&quot; --proxy socks5h://127.0.0.1:7891 --connect-timeout 10 --max-time 20 --head https://example.com/
+<div class="prose"><p>在浏览器或系统里填写 HTTP 代理后，访问 HTTPS 网站并不是把加密网页内容直接交给代理改写。常见做法是先向代理发送 <code>CONNECT</code> 请求，请它建立到目标主机和端口的 TCP 隧道，再由客户端与目标站点完成 TLS 握手。</p>
+<h2 id="connect-">CONNECT 请求解决什么问题</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.6">RFC 9110 的 CONNECT 章节</a>规定，客户端用请求目标中的主机名和端口，请代理建立隧道。代理返回 2xx 后，后续数据进入盲转发阶段；客户端发送的 TLS 握手和加密内容通过这条隧道传输。</p>
+<p>因此，“HTTP 代理端口”描述的是客户端如何与本地或上游代理交互，不等于目标 HTTPS 网站退化成明文 HTTP。是否安全仍取决于客户端对目标证书的校验，以及中间是否存在用户明确安装并信任的解密证书。</p>
+<h2 id="-tls-">为什么错误常出现在 TLS 之前</h2>
+<p>访问 HTTPS 网站通常经历：解析代理地址、连接代理、发送 CONNECT、代理连接目标、建立隧道、执行 TLS 握手、发送 HTTP 请求。任一阶段失败，表面上都可能只显示“代理连接失败”。</p>
+<p>常见区分方法：</p>
+<ol>
+<li>连接代理端口就被拒绝，先查本地客户端是否监听、端口类型是否填对。</li>
+<li>收到 407，表示代理要求认证，应核对代理凭据，而不是网站账号。</li>
+<li>CONNECT 返回非 2xx，查看代理响应与目标端口限制。</li>
+<li>隧道成功后出现证书错误，继续核对系统时间、目标主机名和证书链。</li>
+</ol>
+<h2 id="-curl-">用 curl 观察隧道阶段</h2>
+<p>在确认本地 HTTP 代理端口后，可用详细输出观察连接流程。不要在要分享的截图中暴露代理用户名、密码、订阅地址或令牌。</p>
+<pre><code class="language-powershell">curl.exe --verbose --proxy http://127.0.0.1:7890 --connect-timeout 10 --head https://example.com/
 </code></pre>
-<p>两条命令都指定同一个本地入口，并清空本次请求的代理绕过列表。连接和总时长上限仅用于避免一直等待，不是判断网络是否合格的门槛。示例使用 HEAD 请求，只取响应头；若目标不接受 HEAD，可改用相同方式的普通 GET 再比较。</p>
-<p>参数作用和本机支持情况以 <a href="https://curl.se/docs/manpage.html">curl 手册</a>为准，示例不是针对任何机场的实测结论。</p>
-<h2 id="heading-3">如何读结果</h2>
-<table>
-<thead>
-<tr>
-<th>观察</th>
-<th>下一步</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>本地解析失败，交给代理后成功</td>
-<td>记录目标域名，检查本地解析路径与客户端DNS策略</td>
-</tr>
-<tr>
-<td>两种方式都连接不到本地端口</td>
-<td>先查客户端运行状态与端口，不急着修改DNS</td>
-</tr>
-<tr>
-<td>两种方式都成功，但浏览器失败</td>
-<td>比较浏览器代理来源、扩展与实际访问目标</td>
-</tr>
-<tr>
-<td>返回401、403、405等HTTP状态</td>
-<td>已取得应用层响应，继续按网站权限或请求方法分析</td>
-</tr>
-</tbody>
-</table>
-<p>只有第一种现象支持“解析路径差异值得继续查”的判断；它仍不能独立确定是哪一台 DNS 服务器有问题。</p>
-<h2 id="dns">这不是完整的DNS隐私测试</h2>
-<p>代理服务器本身的地址、浏览器的安全 DNS、系统其他应用和 TUN 接管范围，可能使用不同路径。<a href="https://curl.se/docs/url-syntax.html">curl URL 语法说明</a>也区分代理地址与目标地址的含义。因此，两条命令成功不等于整台电脑所有 DNS 都经过代理。</p>
-<p>在机场推荐和日常排障中，把结论写成“同一目标在两种解析方式下的结果”，再附时间、端口类型与脱敏日志，才便于复现。一次对照解决一个问题，不需要同时替换节点、DNS和浏览器。</p>
+<p>输出中若出现 <code>CONNECT example.com:443</code> 与成功的 2xx 响应，说明隧道建立阶段通过；之后的 TLS 和目标响应仍需分别判断。<code>--head</code>只请求响应头，不代表所有网站都支持，也不能代替实际业务测试。</p>
+<h2 id="heading">端口名称不能代替实际验证</h2>
+<p>许多机场客户端同时提供 HTTP、SOCKS5 和 mixed 端口。把 SOCKS5 端口误填成 HTTP 代理，客户端与代理的首个报文格式就不匹配。反过来也一样。应以客户端界面或配置中的实际端口类型为准。</p>
+<p>CONNECT 解释了 HTTPS 经过 HTTP 代理时的基础通道，但不直接证明流量最终走哪个机场节点、DNS 在哪里解析或 UDP 是否受支持。要判断这些问题，还需结合客户端规则、连接日志与实际出口做独立验收。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/dns/"># DNS</a><a href="https://zjtf.org/tags/routing/"># 路由分流</a></nav>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/http-connect-tunnel-explained/">← 上一篇</a><a href="https://zjtf.org/posts/http-socks5-mixed-proxy-ports/">下一篇 →</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/routing/"># 路由分流</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/jctj2/">← 上一篇</a><a href="https://zjtf.org/posts/curl-socks5h-dns-resolution/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
-<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">两种写法分别做什么</a><a class="level-2" href="#heading-1">先确认测试前提</a><a class="level-2" href="#heading-2">只改变解析方式的对照命令</a><a class="level-2" href="#heading-3">如何读结果</a><a class="level-2" href="#dns">这不是完整的DNS隐私测试</a></nav></aside></div>
+<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#connect-">CONNECT 请求解决什么问题</a><a class="level-2" href="#-tls-">为什么错误常出现在 TLS 之前</a><a class="level-2" href="#-curl-">用 curl 观察隧道阶段</a><a class="level-2" href="#heading">端口名称不能代替实际验证</a></nav></aside></div>
 
 
 </main>
@@ -159,7 +136,7 @@ curl.exe --noproxy &quot;&quot; --proxy socks5h://127.0.0.1:7891 --connect-timeo
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/7dcbabb7-2af3-4b01-b83d-7d84a18ff997/","pageTitle":"socks5与socks5h有什么区别？用curl判断域名在哪一侧解析","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/15056fdd-28f0-4daf-9cb3-e69b0907323f/","pageTitle":"HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
 
 </body>
 </html>
