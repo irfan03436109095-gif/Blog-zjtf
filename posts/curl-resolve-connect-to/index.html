@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FlyBit机场入门：注册试用与套餐选择指南 · 酌酒听风机场测评</title>
-<meta name="description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
-<meta name="keywords" content="FlyBit机场,FlyBit注册,FlyBit试用,FlyBit邀请码,机场套餐,机场订阅,机场入门">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/jctj2/">
-<meta property="og:title" content="FlyBit机场入门：注册试用与套餐选择指南">
-<meta property="og:description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
-<meta property="og:url" content="https://zjtf.org/posts/jctj2/">
+<title>不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别 · 酌酒听风机场测评</title>
+<meta name="description" content="curl --resolve和--connect-to有什么区别？用单次命令隔离DNS与连接目标，同时保留TLS服务器名称和证书校验。">
+<meta name="keywords" content="curl resolve,connect-to,DNS排查,TLS验证,机场协议">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/curl-resolve-connect-to/">
+<meta property="og:title" content="不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别">
+<meta property="og:description" content="curl --resolve和--connect-to有什么区别？用单次命令隔离DNS与连接目标，同时保留TLS服务器名称和证书校验。">
+<meta property="og:url" content="https://zjtf.org/posts/curl-resolve-connect-to/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="酌酒听风机场测评">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FlyBit机场入门：注册试用与套餐选择指南">
-<meta name="twitter:description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
+<meta name="twitter:title" content="不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别">
+<meta name="twitter:description" content="curl --resolve和--connect-to有什么区别？用单次命令隔离DNS与连接目标，同时保留TLS服务器名称和证书校验。">
 <meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="CPU干冒烟了"><meta property="article:published_time" content="2026-09-13T20:35:02&#43;08:00"><meta property="article:modified_time" content="2026-09-23T21:15:05&#43;08:00"><meta property="article:tag" content="机场推荐">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/jctj2/#article","@type":"BlogPosting","author":{"@type":"Person","name":"CPU干冒烟了"},"dateModified":"2026-09-23T21:15:05+08:00","datePublished":"2026-09-13T20:35:02+08:00","description":"了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。","headline":"FlyBit机场入门：注册试用与套餐选择指南","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/jctj2/","@type":"WebPage"},"url":"https://zjtf.org/posts/jctj2/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/jctj2/","name":"FlyBit机场入门：注册试用与套餐选择指南","position":2}]}]}</script>
+<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-25T09:10:15&#43;08:00"><meta property="article:modified_time" content="2026-09-25T09:11:13&#43;08:00"><meta property="article:tag" content="使用教程"><meta property="article:tag" content="DNS">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/curl-resolve-connect-to/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-25T09:11:13+08:00","datePublished":"2026-09-25T09:10:15+08:00","description":"curl --resolve和--connect-to有什么区别？用单次命令隔离DNS与连接目标，同时保留TLS服务器名称和证书校验。","headline":"不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/curl-resolve-connect-to/","@type":"WebPage"},"url":"https://zjtf.org/posts/curl-resolve-connect-to/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/curl-resolve-connect-to/","name":"不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.1.2">
@@ -69,47 +69,48 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
 
-<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">FlyBit机场入门：注册试用与套餐选择指南</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别</span></li></ol></nav>
 
 
 <article data-pagefind-body>
-<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活 · 置顶文章</div><h1 data-pagefind-meta="title">FlyBit机场入门：注册试用与套餐选择指南</h1>
-<div class="metadata" data-pagefind-ignore><span>CPU干冒烟了</span><time datetime="2026-09-13T20:35:02&#43;08:00">2026-09-13</time><span><span id="page-views">—</span> 次阅读</span></div>
-<div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/cat1/">机场推荐</a></div>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-25T09:10:15&#43;08:00">2026-09-25</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
 </header>
-<div class="prose"><p>已加入你的推广链接。该链接目前打开的是导航页，因此文中也保留了邀请码，方便读者注册时填写。</p>
-<h2 id="-flybit-">✈️ FlyBit 机场入门：先试用，再选择适合自己的套餐</h2>
-<p>挑选机场时，套餐价格、节点数量和线路名称，往往让人看得眼花缭乱。对普通用户来说，在自己的手机、电脑和常用网络里体验一次，更容易判断是否合适。</p>
-<p>如果你正在了解代理服务，可以从 <strong>FlyBit 的试用入口</strong>开始。</p>
-<p>🎁 <strong>先用试用额度，看看是否符合需求</strong></p>
-<p>FlyBit 公开页面目前标注“注册即可免费试用 2G”，并以“专线＋中转”为服务卖点。试用领取条件、有效期和具体可用节点，以站内最新说明为准。<a href="https://goflybit.com/#/register?code=gPinVG8C">查看 FlyBit 官方页面</a></p>
-<p>这份试用额度，可以用来检查日常网页访问、常用应用连接和基础操作是否顺畅。测试时留意流量消耗，把额度优先用在自己最常使用的场景。</p>
-<p>📱 <strong>体验时，重点看这三件事</strong></p>
+<div class="prose"><p>排查机场连接时，经常需要回答一个问题：失败来自 DNS 解析，还是连接到某个地址后的 TLS/HTTP 阶段？直接修改系统 hosts 会影响整台设备，也容易忘记恢复。curl 提供了两种只作用于当前命令的办法：<code>--resolve</code> 和 <code>--connect-to</code>。</p>
+<h2 id="--resolve"><code>--resolve</code>：为主机和端口临时指定地址</h2>
+<p>示意命令如下：</p>
+<pre><code class="language-text">curl --resolve example.com:443:203.0.113.10 https://example.com/
+</code></pre>
+<p>其中 <code>example.com</code> 和地址只是文档示例，实际测试必须换成你有权访问的目标。<code>--resolve</code> 相当于为“主机名 + 端口”提供一条临时解析记录。请求 URL、HTTP Host、TLS SNI 和证书校验仍以 <code>example.com</code> 为准，只改变本次连接使用的地址。</p>
+<p>这适合比较“正常 DNS 得到的地址”和“已知候选地址”是否表现不同。测试结束后无需改回系统 DNS，因为规则只存在于这一条 curl 命令里。</p>
+<h2 id="--connect-to"><code>--connect-to</code>：只替换网络连接目的地</h2>
+<p>示意命令：</p>
+<pre><code class="language-text">curl --connect-to example.com:443:backend.example.net:8443 https://example.com/
+</code></pre>
+<p>curl 官方手册说明，<code>--connect-to</code> 只改变建立网络连接时使用的主机和端口，不改变 TLS 使用的服务器名称，也不改变应用层请求中的原始主机。它适合在前端域名保持不变时，验证另一个后端入口。</p>
+<h2 id="heading">两者不要混为一谈</h2>
 <ul>
-<li><strong>是否容易上手</strong>：你的设备能否使用兼容客户端，订阅配置是否顺利。</li>
-<li><strong>常用场景是否顺畅</strong>：实际打开网页、加载内容，观察等待时间和连接情况。</li>
-<li><strong>不同时段是否稳定</strong>：在白天和晚上分别体验，看看是否频繁出现中断。</li>
+<li>已经知道目标 IP，想绕过本次 DNS 结果：优先考虑 <code>--resolve</code>。</li>
+<li>想把连接导向另一台主机或另一个端口，同时保留原始 URL 语义：使用 <code>--connect-to</code>。</li>
+<li>只是想看代理是否工作：先用明确的 <code>--proxy</code> 参数和普通 URL，不必加入这两个选项。</li>
 </ul>
-<p>一次测速只是参考。连续几次日常使用的感受，更能帮助你判断服务是否适合自己。</p>
-<p>💰 <strong>套餐按需求选，花钱更有方向</strong></p>
-<p>体验合适后，再查看当前套餐的流量额度、有效期、设备限制和计费规则。</p>
-<p>偶尔使用，可以优先比较小额度或短周期方案；使用频率较高，则需要估算每月流量需求。具体选择以站内实际提供的套餐为准。</p>
-<p>🚀 <strong>从这里开始了解 FlyBit</strong></p>
-<ol>
-<li>点击下方推广入口，在导航页选择可用入口。</li>
-<li>进入注册页，按页面要求完成注册。</li>
-<li>邀请码填写：<code>gPinVG8C</code>。</li>
-<li>查看试用活动和使用说明，再根据实际体验决定是否购买。</li>
-</ol>
-<p>👉 <strong><a href="https://goflybit.com/#/register?code=gPinVG8C">进入 FlyBit，查看注册与试用信息</a></strong></p>
-<p>找到适合自己的机场，可以从一次贴近日常需求的试用开始。连接是否顺手、套餐是否合适，亲自体验后再做决定。</p>
+<p>如果目标证书并不覆盖原始域名，curl 应当报证书错误。不要用 <code>-k</code> 或关闭校验来“修好”它；证书不匹配本身就是重要证据。</p>
+<h2 id="heading-1">放进机场排障流程</h2>
+<p>先在直连状态执行普通请求，再在机场客户端提供的代理入口下执行同一个请求。只有确认普通请求失败点后，才加入 <code>--resolve</code> 或 <code>--connect-to</code> 做单变量对照。每次记录退出码、连接地址、HTTP 状态和总耗时，不要把含账号、Cookie、订阅密钥的完整命令发到公开场合。</p>
+<p>验收时应看到：临时映射只影响当前命令；URL 主机名和证书校验没有被偷偷替换；去掉选项后行为恢复。这样才能把 DNS、网络连接与 TLS 三层分开，而不是把所有错误都归因于机场协议。</p>
+<h2 id="heading-2">参考资料</h2>
+<ul>
+<li><a href="https://curl.se/docs/manpage.html">curl 命令行手册：--resolve 与 --connect-to</a></li>
+<li><a href="https://curl.se/docs/httpscripting.html">curl：HTTP 请求脚本指南</a></li>
+</ul>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/jctj/"># 机场推荐</a></nav>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/jccp1/">← 上一篇</a><a href="https://zjtf.org/posts/curl-resolve-connect-to/">下一篇 →</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/syjc1/"># 使用教程</a><a href="https://zjtf.org/tags/dns/"># DNS</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/jctj2/">← 上一篇</a><a href="https://zjtf.org/posts/http-connect-tunnel-explained/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
-<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#-flybit-">✈️ FlyBit 机场入门：先试用，再选择适合自己的套餐</a></nav></aside></div>
+<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#--resolve">--resolve：为主机和端口临时指定地址</a><a class="level-2" href="#--connect-to">--connect-to：只替换网络连接目的地</a><a class="level-2" href="#heading">两者不要混为一谈</a><a class="level-2" href="#heading-1">放进机场排障流程</a><a class="level-2" href="#heading-2">参考资料</a></nav></aside></div>
 
 
 </main>
@@ -141,7 +142,7 @@
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/37ed8dbc-756d-4d61-bc30-c825047f10d2/","pageTitle":"FlyBit机场入门：注册试用与套餐选择指南","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/9e05ac4c-7e81-4386-83db-9e5c403945a1/","pageTitle":"不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
 
 </body>
 </html>
