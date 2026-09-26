@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zjtf.org/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat1/</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/categories/protocols-network/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/syjc1/</loc>
@@ -22,11 +22,11 @@
   </url>
   <url>
     <loc>https://zjtf.org/page/2/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/3/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/aboutus/</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/curl-resolve-connect-to/</loc>
-    <lastmod>2026-09-25T01:11:13Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/curl-socks5h-dns-resolution/</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj3/</loc>
@@ -141,6 +141,10 @@
     <lastmod>2026-09-23T13:15:52Z</lastmod>
   </url>
   <url>
+    <loc>https://zjtf.org/posts/tls-sni-host-difference/</loc>
+    <lastmod>2026-09-26T01:06:59Z</lastmod>
+  </url>
+  <url>
     <loc>https://zjtf.org/tags/dns/</loc>
     <lastmod>2026-09-25T01:49:19Z</lastmod>
   </url>
@@ -170,6 +174,6 @@
   </url>
   <url>
     <loc>https://zjtf.org/tags/syjc1/</loc>
-    <lastmod>2026-09-25T01:49:19Z</lastmod>
+    <lastmod>2026-09-26T11:14:06Z</lastmod>
   </url>
 </urlset>
