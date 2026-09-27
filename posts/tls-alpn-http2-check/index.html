@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>同一 IP 为什么返回不同证书？SNI 与 Host 的区别 · 酌酒听风机场测评</title>
-<meta name="description" content="同一IP为何返回不同HTTPS证书？理解TLS SNI与HTTP Host的阶段区别，并用curl --resolve安全验证。">
-<meta name="keywords" content="TLS SNI,Host请求头,HTTPS证书,curl resolve,机场协议">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/tls-sni-host-difference/">
-<meta property="og:title" content="同一 IP 为什么返回不同证书？SNI 与 Host 的区别">
-<meta property="og:description" content="同一IP为何返回不同HTTPS证书？理解TLS SNI与HTTP Host的阶段区别，并用curl --resolve安全验证。">
-<meta property="og:url" content="https://zjtf.org/posts/tls-sni-host-difference/">
+<title>HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN · 酌酒听风机场测评</title>
+<meta name="description" content="HTTPS为何显示h2？理解TLS ALPN协商、SNI区别和HTTP/2验证方法，避免把协议标签直接等同于节点速度。">
+<meta name="keywords" content="TLS ALPN,HTTP2 h2,curl http_version,机场协议">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/tls-alpn-http2-check/">
+<meta property="og:title" content="HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN">
+<meta property="og:description" content="HTTPS为何显示h2？理解TLS ALPN协商、SNI区别和HTTP/2验证方法，避免把协议标签直接等同于节点速度。">
+<meta property="og:url" content="https://zjtf.org/posts/tls-alpn-http2-check/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="酌酒听风机场测评">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同一 IP 为什么返回不同证书？SNI 与 Host 的区别">
-<meta name="twitter:description" content="同一IP为何返回不同HTTPS证书？理解TLS SNI与HTTP Host的阶段区别，并用curl --resolve安全验证。">
+<meta name="twitter:title" content="HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN">
+<meta name="twitter:description" content="HTTPS为何显示h2？理解TLS ALPN协商、SNI区别和HTTP/2验证方法，避免把协议标签直接等同于节点速度。">
 <meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-26T09:06:54&#43;08:00"><meta property="article:modified_time" content="2026-09-26T09:06:59&#43;08:00"><meta property="article:tag" content="使用教程">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/tls-sni-host-difference/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-26T09:06:59+08:00","datePublished":"2026-09-26T09:06:54+08:00","description":"同一IP为何返回不同HTTPS证书？理解TLS SNI与HTTP Host的阶段区别，并用curl --resolve安全验证。","headline":"同一 IP 为什么返回不同证书？SNI 与 Host 的区别","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/tls-sni-host-difference/","@type":"WebPage"},"url":"https://zjtf.org/posts/tls-sni-host-difference/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/tls-sni-host-difference/","name":"同一 IP 为什么返回不同证书？SNI 与 Host 的区别","position":2}]}]}</script>
+<meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-27T09:07:02&#43;08:00"><meta property="article:modified_time" content="2026-09-27T09:07:16&#43;08:00"><meta property="article:tag" content="使用教程">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/tls-alpn-http2-check/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-27T09:07:16+08:00","datePublished":"2026-09-27T09:07:02+08:00","description":"HTTPS为何显示h2？理解TLS ALPN协商、SNI区别和HTTP/2验证方法，避免把协议标签直接等同于节点速度。","headline":"HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/tls-alpn-http2-check/","@type":"WebPage"},"url":"https://zjtf.org/posts/tls-alpn-http2-check/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/tls-alpn-http2-check/","name":"HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.1.2">
@@ -69,50 +69,46 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
 
-<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</span></li></ol></nav>
 
 
 <article data-pagefind-body>
-<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</h1>
-<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-26T09:06:54&#43;08:00">2026-09-26</time><span><span id="page-views">—</span> 次阅读</span></div>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</h1>
+<div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-27T09:07:02&#43;08:00">2026-09-27</time><span><span id="page-views">—</span> 次阅读</span></div>
 <div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
 </header>
-<div class="prose"><h2 id="-ip-sni--host-">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</h2>
-<p>一个 IP 地址上可以托管多个 HTTPS 网站。浏览器访问不同域名时，虽然可能连到同一个 IP，服务器仍能返回对应站点的证书和内容。这依靠的是不同协议阶段里的两个名称：TLS 握手阶段的 SNI，以及 HTTP 请求里的 Host（HTTP/2、HTTP/3 中对应 <code>:authority</code>）。</p>
-<p>理解这一区别，对机场节点排障很实用：证书错误通常发生在 HTTP 请求发送之前，单纯改 Host 请求头往往修不好 SNI 或证书校验问题。</p>
-<h3 id="heading">请求实际经过哪些步骤</h3>
-<ol>
-<li>客户端解析 URL 中的域名，得到 IP。</li>
-<li>与目标 IP 建立 TCP 或 QUIC 连接。</li>
-<li>TLS ClientHello 通过 SNI 告诉服务器希望访问的主机名。</li>
-<li>服务器据此选择证书，客户端核验证书名称。</li>
-<li>TLS 成功后，客户端才发送带 Host 或 <code>:authority</code> 的 HTTP 请求。</li>
-</ol>
-<p>RFC 6066 规定了 TLS <code>server_name</code> 扩展。它解决的是一个服务器地址承载多个虚拟主机时，服务器在握手阶段如何选择合适凭据的问题。</p>
-<h3 id="-curl-">用 curl 做安全的单次验证</h3>
-<p>如果你有权测试某个网站，并已知它当前使用的服务器 IP，可以执行：</p>
-<pre><code class="language-bash">curl -v --resolve example.com:443:203.0.113.10 https://example.com/
+<div class="prose"><h2 id="https--h2--tls-alpn">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</h2>
+<p>浏览器开发者工具或 curl 输出中的 <code>h2</code>，表示这条连接使用 HTTP/2。它通常不是通过网页响应头临时决定的，而是在 TLS 握手期间借助 ALPN（Application-Layer Protocol Negotiation）完成协商。</p>
+<p>理解 ALPN 能帮助排查一种常见现象：同一网站直连显示 h2，经过某个代理路径后却显示 HTTP/1.1。这个差异只是协议协商结果，不能单独证明节点快慢、UDP 支持或服务质量。</p>
+<h3 id="alpn-">ALPN 在哪一层工作</h3>
+<p>RFC 7301 定义了 TLS 中的应用层协议协商扩展。客户端在握手时列出支持的协议，服务器从双方都支持的协议中选择一个。对于 HTTPS，常见标识包括 <code>h2</code> 和 <code>http/1.1</code>。</p>
+<p>它和前一天讲过的 SNI 作用不同：SNI帮助服务器选择主机名对应的证书和站点，ALPN选择 TLS 建立后使用的应用层协议。两者都发生在 HTTP 正文传输之前。</p>
+<h3 id="-curl-">用 curl 做单次验证</h3>
+<pre><code class="language-bash">curl -sS -o NUL -w &quot;http=%{http_version}\n&quot; https://example.com/
 </code></pre>
-<p>把域名和示例 IP 换成真实测试目标。<code>--resolve</code> 临时把指定主机与端口映射到该地址，同时 URL 仍保留原域名，因此 SNI、证书校验和 HTTP 主机名保持一致。该设置只作用于这一条命令，不会改系统 hosts。</p>
-<p>不要用 <code>-k</code> 或 <code>--insecure</code> 绕过证书错误作为“修复”。那只会跳过重要校验，无法证明代理路径正常。</p>
-<h3 id="heading-1">常见误判</h3>
+<p>macOS 或 Linux 把 <code>NUL</code> 换成 <code>/dev/null</code>。把示例域名替换为你有权访问的公开 HTTPS 目标。也可以分别限制协议做对照：</p>
+<pre><code class="language-bash">curl --http1.1 -I https://example.com/
+curl --http2 -I https://example.com/
+</code></pre>
+<p>如果本机 curl 未编译 HTTP/2 支持，第二条命令会直接报错；这属于客户端能力，不应归因于机场节点。先用 <code>curl --version</code> 查看支持特性。</p>
+<h3 id="heading">结果怎样解释</h3>
 <ul>
-<li><strong>只在请求中添加 <code>Host:</code>。</strong> TLS 已在 HTTP 之前完成，证书选择可能早已错误。</li>
-<li><strong>直接访问 <code>https://IP/</code>。</strong> URL 主机名变成 IP，SNI 和证书校验目标都会变化，结果不能等同于访问原域名。</li>
-<li><strong>看到同一 IP 就认为同一网站。</strong> CDN、反向代理和共享主机都可能让多个域名复用地址。</li>
-<li><strong>换机场节点后证书异常就认定节点劫持。</strong> 还应核对系统时间、目标域名、客户端日志和直连对照，避免越过证据下结论。</li>
+<li>自动协商为 h2：客户端与服务端在该路径上完成了 HTTP/2 协商。</li>
+<li>强制 HTTP/2 失败、HTTP/1.1 成功：继续比较直连和其他节点，检查中间代理能力与目标站点配置。</li>
+<li>所有路径都只显示 HTTP/1.1：目标站或本机 curl 能力也可能是原因。</li>
+<li>浏览器与 curl 不同：它们的协议栈、连接复用和缓存可能不同。</li>
 </ul>
-<h3 id="heading-2">验收思路</h3>
-<p>在同一设备上分别做直连、正常代理和另一个节点三次请求，保持 URL 不变，记录解析地址、TLS 证书名称、HTTP 状态与时间。如果只有某一节点在 TLS 阶段失败，证据才开始指向该路径；如果直连同样失败，应先检查目标站点或本机环境。</p>
-<p>机场推荐或协议测评不应只写“能打开”。把 DNS、连接、SNI、证书和 HTTP 响应分开记录，结论更可复核。</p>
-<p>可核验来源：<a href="https://datatracker.ietf.org/doc/html/rfc6066">RFC 6066：TLS 扩展中的 Server Name Indication</a>、<a href="https://curl.se/docs/manpage.html">curl <code>--resolve</code> 官方说明</a>。</p>
+<p>HTTP/2 经 TLS 通常仍运行在 TCP 上；看到 h2 不等于 HTTP/3 或 QUIC。测评时应把 ALPN 结果与连接耗时、失败率和真实任务分开记录。</p>
+<h3 id="heading-1">验收清单</h3>
+<p>固定目标、设备、网络和时间窗口，对直连与候选节点各测数次；记录协议版本和请求是否成功。机场推荐结论应说明测试条件，不把“显示 h2”写成绝对性能优势。</p>
+<p>来源：<a href="https://datatracker.ietf.org/doc/html/rfc7301">RFC 7301：TLS ALPN 扩展</a>、<a href="https://curl.se/docs/manpage.html">curl 命令行手册</a>。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
 <nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/syjc1/"># 使用教程</a></nav>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/tls-alpn-http2-check/">← 上一篇</a><a href="https://zjtf.org/posts/curl-resolve-connect-to/">下一篇 →</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/jctj2/">← 上一篇</a><a href="https://zjtf.org/posts/tls-sni-host-difference/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
-<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#-ip-sni--host-">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</a><a class="level-3" href="#heading">请求实际经过哪些步骤</a><a class="level-3" href="#-curl-">用 curl 做安全的单次验证</a><a class="level-3" href="#heading-1">常见误判</a><a class="level-3" href="#heading-2">验收思路</a></nav></aside></div>
+<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#https--h2--tls-alpn">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</a><a class="level-3" href="#alpn-">ALPN 在哪一层工作</a><a class="level-3" href="#-curl-">用 curl 做单次验证</a><a class="level-3" href="#heading">结果怎样解释</a><a class="level-3" href="#heading-1">验收清单</a></nav></aside></div>
 
 
 </main>
@@ -144,7 +140,7 @@
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/3e266b24-fb18-4cd0-b013-b3a96830bf44/","pageTitle":"同一 IP 为什么返回不同证书？SNI 与 Host 的区别","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/d07f3f58-3c78-41ab-86a4-462f68f2253f/","pageTitle":"HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
 
 </body>
 </html>
