@@ -12,7 +12,7 @@
 .theme-image-viewer{--text:#fff;--accent:#fff}
 @media(max-width:760px){.reader-dialog-body{padding:18px}.search-toggle{margin:0}}
 
-/* 首页首篇全文与左侧精选，保留原有渐变与玻璃质感。 */
+/* 首页首篇全文与左侧推广位，展示标题为「精选推荐」。 */
 .home-layout{display:grid;grid-template-columns:250px minmax(0,1fr);align-items:start;gap:30px}
 .home-articles{grid-column:2;grid-row:1;min-width:0}
 .home-recommendation-rail{grid-column:1;grid-row:1;min-width:0;display:grid;align-content:start;gap:24px}
@@ -20,15 +20,11 @@
 .recommendations-heading{display:flex;gap:10px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .recommendations-heading>span{font-size:23px;line-height:1;color:var(--text)}
 .recommendations-heading h2{font-size:20px;font-weight:650;margin:0}
-.recommendation-list{counter-reset:recommendation;list-style:none;margin:0;padding:0}
-.recommendation-list li{counter-increment:recommendation;position:relative;padding-left:27px;border-bottom:1px solid var(--line)}
-.recommendation-list li:last-child{border:0}
-.recommendation-list li::before{content:counter(recommendation,decimal-leading-zero);position:absolute;left:0;top:18px;font-size:11px;color:var(--muted)}
-.recommendation-list a{display:block;padding:16px 0}
-.recommendation-title{display:block;overflow-wrap:anywhere;font-size:15px;line-height:1.7;color:var(--text)}
-.recommendation-list a:hover .recommendation-title{text-decoration:underline;text-underline-offset:4px}
-.recommendation-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:7px;color:var(--muted);font-size:10px}
-.recommendation-meta>span:last-child{margin-left:auto}
+.featured-recommendations.ad-slot{gap:0}
+.featured-ad-list{display:grid;gap:16px;padding-top:18px;min-width:0}
+.featured-ad-list .ad-card{border-radius:12px;background:var(--soft)}
+.featured-ad-list .ad-copy{padding:15px;font-size:14px;line-height:1.85}
+.featured-ad-list .ad-card:focus-visible{outline:2px solid var(--text);outline-offset:4px}
 .home-layout .article-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .home-layout .article-card,.home-layout .article-card:nth-child(-n+2){grid-column:span 1;padding:26px;min-height:222px}
 .home-layout .article-card.home-feature{grid-column:1/-1;min-height:0;padding:34px 38px;transition:none}
