@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zjtf.org/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat1/</loc>
@@ -29,20 +29,28 @@
     <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
+    <loc>https://zjtf.org/categories/trending-topics/</loc>
+    <lastmod>2026-09-30T13:04:08Z</lastmod>
+  </url>
+  <url>
     <loc>https://zjtf.org/page/2/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/3/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/4/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/aboutus/</loc>
     <lastmod>2026-09-28T07:02:25Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/posts/ai-chip-headlines-inference-speed-explained-20260930/</loc>
+    <lastmod>2026-09-30T13:04:08Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/curl-resolve-connect-to/</loc>
@@ -54,7 +62,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/</loc>
-    <lastmod>2026-09-30T11:58:15Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/gyrk1/</loc>
@@ -98,7 +106,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-09-30T13:05:35Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj3/</loc>
