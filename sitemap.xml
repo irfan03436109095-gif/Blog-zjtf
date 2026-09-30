@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zjtf.org/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat1/</loc>
@@ -10,27 +10,35 @@
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat2/</loc>
-    <lastmod>2026-09-28T07:02:25Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/categories/cat2/page/2/</loc>
+    <lastmod>2026-09-30T11:58:15Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/protocols-network/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/categories/protocols-network/page/2/</loc>
+    <lastmod>2026-09-30T11:58:15Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/syjc1/</loc>
-    <lastmod>2026-09-28T07:02:25Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/2/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/3/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/4/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/aboutus/</loc>
@@ -45,6 +53,10 @@
     <lastmod>2026-09-28T07:02:25Z</lastmod>
   </url>
   <url>
+    <loc>https://zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/</loc>
+    <lastmod>2026-09-30T11:58:15Z</lastmod>
+  </url>
+  <url>
     <loc>https://zjtf.org/posts/gyrk1/</loc>
     <lastmod>2026-09-28T07:02:25Z</lastmod>
   </url>
@@ -54,7 +66,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/http-redirect-method-semantics/</loc>
-    <lastmod>2026-09-29T01:08:27Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/http-socks5-mixed-proxy-ports/</loc>
@@ -86,7 +98,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj3/</loc>
@@ -95,6 +107,10 @@
   <url>
     <loc>https://zjtf.org/posts/mr1/</loc>
     <lastmod>2026-09-28T07:02:25Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/posts/retry-after-proxy-backoff/</loc>
+    <lastmod>2026-09-30T01:09:11Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/smkj1/</loc>
@@ -186,14 +202,18 @@
   </url>
   <url>
     <loc>https://zjtf.org/tags/smkj/</loc>
-    <lastmod>2026-09-28T07:02:25Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/tags/smkj/page/2/</loc>
+    <lastmod>2026-09-30T11:58:15Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/tags/syjc1/</loc>
-    <lastmod>2026-09-29T11:52:33Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/tags/syjc1/page/2/</loc>
-    <lastmod>2026-09-29T01:08:27Z</lastmod>
+    <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
 </urlset>
