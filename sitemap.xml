@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zjtf.org/</loc>
-    <lastmod>2026-10-01T04:11:45Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat1/</loc>
@@ -29,20 +29,24 @@
     <lastmod>2026-09-30T12:03:31Z</lastmod>
   </url>
   <url>
+    <loc>https://zjtf.org/categories/travel-guides/</loc>
+    <lastmod>2026-10-01T05:00:58Z</lastmod>
+  </url>
+  <url>
     <loc>https://zjtf.org/categories/trending-topics/</loc>
     <lastmod>2026-09-30T13:04:08Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/2/</loc>
-    <lastmod>2026-10-01T03:59:06Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/3/</loc>
-    <lastmod>2026-10-01T03:59:06Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/4/</loc>
-    <lastmod>2026-10-01T03:59:06Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/aboutus/</loc>
@@ -70,7 +74,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/http-421-misdirected-request/</loc>
-    <lastmod>2026-10-01T02:59:50Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/http-connect-tunnel-explained/</loc>
@@ -110,7 +114,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-10-01T03:59:06Z</lastmod>
+    <lastmod>2026-10-01T05:02:14Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj3/</loc>
@@ -167,6 +171,10 @@
   <url>
     <loc>https://zjtf.org/posts/smkj8/</loc>
     <lastmod>2026-09-28T07:02:25Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/posts/suzhou-national-day-2026-gardens-three-days/</loc>
+    <lastmod>2026-10-01T05:00:58Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/syjc2/</loc>
