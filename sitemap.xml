@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zjtf.org/</loc>
-    <lastmod>2026-09-30T13:05:35Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/cat1/</loc>
@@ -18,11 +18,11 @@
   </url>
   <url>
     <loc>https://zjtf.org/categories/protocols-network/</loc>
-    <lastmod>2026-09-30T12:03:31Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/protocols-network/page/2/</loc>
-    <lastmod>2026-09-30T11:58:15Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/categories/syjc1/</loc>
@@ -34,15 +34,15 @@
   </url>
   <url>
     <loc>https://zjtf.org/page/2/</loc>
-    <lastmod>2026-09-30T13:05:35Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/3/</loc>
-    <lastmod>2026-09-30T13:05:35Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/page/4/</loc>
-    <lastmod>2026-09-30T13:05:35Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/aboutus/</loc>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/ai-chip-headlines-inference-speed-explained-20260930/</loc>
-    <lastmod>2026-09-30T13:04:08Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/curl-resolve-connect-to/</loc>
@@ -67,6 +67,10 @@
   <url>
     <loc>https://zjtf.org/posts/gyrk1/</loc>
     <lastmod>2026-09-28T07:02:25Z</lastmod>
+  </url>
+  <url>
+    <loc>https://zjtf.org/posts/http-421-misdirected-request/</loc>
+    <lastmod>2026-10-01T02:59:50Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/http-connect-tunnel-explained/</loc>
@@ -106,7 +110,7 @@
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-09-30T13:05:35Z</lastmod>
+    <lastmod>2026-10-01T03:59:06Z</lastmod>
   </url>
   <url>
     <loc>https://zjtf.org/posts/jctj3/</loc>
