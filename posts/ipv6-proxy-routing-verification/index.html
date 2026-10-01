@@ -6,39 +6,39 @@
 <title>IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法 · 酌酒听风机场测评</title>
 <meta name="description" content="看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。">
 <meta name="keywords" content="IPv6代理,机场代理分流,DNS解析,IPv6出口检查">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://zjtf.org/posts/ipv6-proxy-routing-verification/">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.zjtf.org/posts/ipv6-proxy-routing-verification/">
 <meta property="og:title" content="IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法">
 <meta property="og:description" content="看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。">
-<meta property="og:url" content="https://zjtf.org/posts/ipv6-proxy-routing-verification/">
+<meta property="og:url" content="https://www.zjtf.org/posts/ipv6-proxy-routing-verification/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="酌酒听风机场测评">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
+<meta property="og:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法">
 <meta name="twitter:description" content="看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。">
-<meta name="twitter:image" content="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<meta name="twitter:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
 <meta name="author" content="王牌飞行员"><meta property="article:published_time" content="2026-09-20T16:29:32&#43;08:00"><meta property="article:modified_time" content="2026-09-20T16:31:30&#43;08:00"><meta property="article:tag" content="IPv6"><meta property="article:tag" content="DNS"><meta property="article:tag" content="路由分流">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://zjtf.org/posts/ipv6-proxy-routing-verification/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-20T16:31:30+08:00","datePublished":"2026-09-20T16:29:32+08:00","description":"看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。","headline":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://zjtf.org/posts/ipv6-proxy-routing-verification/","@type":"WebPage"},"url":"https://zjtf.org/posts/ipv6-proxy-routing-verification/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://zjtf.org/posts/ipv6-proxy-routing-verification/","name":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","position":2}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/ipv6-proxy-routing-verification/#article","@type":"BlogPosting","author":{"@type":"Person","name":"王牌飞行员"},"dateModified":"2026-09-20T16:31:30+08:00","datePublished":"2026-09-20T16:29:32+08:00","description":"看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。","headline":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/ipv6-proxy-routing-verification/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/ipv6-proxy-routing-verification/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/ipv6-proxy-routing-verification/","name":"IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/style.css?v=1.1.3">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/search.css?v=1.1.3"><script defer src="https://zjtf.org/assets/theme/search.js?v=1.1.3"></script>
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/viewer.css?v=1.1.3">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/reader.css?v=1.1.3">
-<link rel="icon" href="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/artalk.css?v=1.1.3"><script defer src="https://zjtf.org/assets/theme/artalk.js?v=1.1.3"></script>
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css?v=1.1.3">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/search.css?v=1.1.3"><script defer src="https://www.zjtf.org/assets/theme/search.js?v=1.1.3"></script>
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/viewer.css?v=1.1.3">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/reader.css?v=1.1.3">
+<link rel="icon" href="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/artalk.css?v=1.1.3"><script defer src="https://www.zjtf.org/assets/theme/artalk.js?v=1.1.3"></script>
 
-<script defer src="https://zjtf.org/assets/theme/theme.js?v=1.1.3"></script>
-<script defer src="https://zjtf.org/assets/theme/reader.js?v=1.1.3"></script>
-<script defer src="https://zjtf.org/assets/theme/viewer.js?v=1.1.3"></script>
-<script defer src="https://zjtf.org/assets/theme/image-viewer.js?v=1.1.3"></script>
+<script defer src="https://www.zjtf.org/assets/theme/theme.js?v=1.1.3"></script>
+<script defer src="https://www.zjtf.org/assets/theme/reader.js?v=1.1.3"></script>
+<script defer src="https://www.zjtf.org/assets/theme/viewer.js?v=1.1.3"></script>
+<script defer src="https://www.zjtf.org/assets/theme/image-viewer.js?v=1.1.3"></script>
 
-<script defer src="https://zjtf.org/assets/theme/interactions.js?v=1.1.3"></script>
+<script defer src="https://www.zjtf.org/assets/theme/interactions.js?v=1.1.3"></script>
 
 
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/advertisements.css?v=1.1.3">
-<link rel="stylesheet" href="https://zjtf.org/assets/theme/skin.css?v=1.1.3">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/advertisements.css?v=1.1.3">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin.css?v=1.1.3">
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -55,9 +55,9 @@
 <a class="skip-link" href="#main">跳到正文</a>
 
 <header class="site-header" data-pagefind-ignore><div class="header-inner">
-<a class="brand" href="https://zjtf.org/" aria-label="酌酒听风机场测评，返回首页"><img src="https://zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png" alt="酌酒听风机场测评标志" width="46" height="46"><span class="brand-name">酌酒听风机场测评</span></a>
-<nav id="site-navigation" aria-label="站点导航"><a href="https://zjtf.org/">首页</a><a href="https://zjtf.org/categories/cat1/">机场推荐</a><a href="https://zjtf.org/tags/syjc1/">使用教程</a><a href="https://zjtf.org/posts/aboutus/">关于我们</a></nav>
-<a class="search-toggle" href="https://zjtf.org/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索文章" title="搜索文章"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+<a class="brand" href="https://www.zjtf.org/" aria-label="酌酒听风机场测评，返回首页"><img src="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png" alt="酌酒听风机场测评标志" width="46" height="46"><span class="brand-name">酌酒听风机场测评</span></a>
+<nav id="site-navigation" aria-label="站点导航"><a href="https://www.zjtf.org/">首页</a><a href="https://www.zjtf.org/categories/cat1/">机场推荐</a><a href="https://www.zjtf.org/tags/syjc1/">使用教程</a><a href="https://www.zjtf.org/posts/aboutus/">关于我们</a></nav>
+<a class="search-toggle" href="https://www.zjtf.org/search/" data-open-dialog="search-dialog" aria-haspopup="dialog" aria-controls="search-dialog" aria-label="搜索文章" title="搜索文章"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
 <button id="theme-mode" class="theme-toggle theme-cycle" type="button" aria-label="明暗模式：跟随系统，点击切换为明亮" title="切换明暗模式">
 <svg class="theme-icon-system" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
 <svg class="theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"/></svg>
@@ -69,13 +69,13 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
 
-<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://www.zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法</span></li></ol></nav>
 
 
 <article data-pagefind-body>
 <header class="article-header"><div class="eyebrow" data-pagefind-ignore>文字与生活</div><h1 data-pagefind-meta="title">IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法</h1>
 <div class="metadata" data-pagefind-ignore><span>王牌飞行员</span><time datetime="2026-09-20T16:29:32&#43;08:00">2026-09-20</time><span><span id="page-views">—</span> 次阅读</span></div>
-<div class="chips" data-pagefind-ignore><a href="https://zjtf.org/categories/protocols-network/">协议与网络</a></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></div>
 </header>
 <div class="prose"><p>IPv6 是否绕过机场代理，取决于应用怎样发起连接、客户端接管了哪些流量以及命中的出站规则。看到一个 IPv6 地址，或者检测页面显示“支持IPv6”，都不足以直接判断泄漏。需要核对的是：本应走代理的那次请求，实际经过了什么路径。</p>
 <p>本文提供排查方法，不代表对任何机场或客户端做过隐私审计。以下示例以自己有权配置的设备与网络为前提；受管理的工作设备应按管理员要求检查。</p>
@@ -161,8 +161,8 @@
 <p>资料核对日期：2026年9月20日。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://zjtf.org/tags/ipv6/"># IPv6</a><a href="https://zjtf.org/tags/dns/"># DNS</a><a href="https://zjtf.org/tags/routing/"># 路由分流</a></nav>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://zjtf.org/posts/http3-quic-fallback-diagnosis/">← 上一篇</a><a href="https://zjtf.org/posts/mr1/">下一篇 →</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/ipv6/"># IPv6</a><a href="https://www.zjtf.org/tags/dns/"># DNS</a><a href="https://www.zjtf.org/tags/routing/"># 路由分流</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/http3-quic-fallback-diagnosis/">← 上一篇</a><a href="https://www.zjtf.org/posts/mr1/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
 <div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#heading">先把三个不同环节分开</a><a class="level-2" href="#heading-1">第一步：先写清自己预期的分流结果</a><a class="level-2" href="#heading-2">第二步：对照同一次请求的连接记录</a><a class="level-2" href="#-ipv4--ipv6-">第三步：核对 IPv4 与 IPv6 是否被不同规则处理</a><a class="level-2" href="#tun-">第四步：TUN 模式也要检查覆盖范围</a><a class="level-2" href="#heading-3">第五步：把出口检测与规则证据放在一起</a><a class="level-2" href="#-ipv6-">关闭 IPv6 能不能作为修复？</a></nav></aside></div>
@@ -184,9 +184,9 @@
 <header class="reader-dialog-header"><h2 id="search-title">搜索文章</h2><button class="dialog-close" type="button" data-close-dialog aria-label="关闭搜索" title="关闭搜索">×</button></header>
 <div class="reader-dialog-body">
 
-<div id="site-search-ui" data-module="https://zjtf.org/pagefind/pagefind-component-ui.js" data-stylesheet="https://zjtf.org/pagefind/pagefind-component-ui.css" hidden>
+<div id="site-search-ui" data-module="https://www.zjtf.org/pagefind/pagefind-component-ui.js" data-stylesheet="https://www.zjtf.org/pagefind/pagefind-component-ui.css" hidden>
 
-<pagefind-config bundle-path="https://zjtf.org/pagefind/" base-url="https://zjtf.org/" lang="zh-cn" no-worker></pagefind-config>
+<pagefind-config bundle-path="https://www.zjtf.org/pagefind/" base-url="https://www.zjtf.org/" lang="zh-cn" no-worker></pagefind-config>
 <pagefind-input placeholder="搜索文章标题或正文"></pagefind-input>
 <pagefind-summary></pagefind-summary>
 <pagefind-results></pagefind-results>
