@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.zjtf.org/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/cat1/</loc>
@@ -18,11 +18,11 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/protocols-network/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/protocols-network/page/2/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/risk-observations/</loc>
@@ -42,19 +42,19 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/page/2/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/3/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/4/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/2026-airport-risk-roundup-testing/</loc>
-    <lastmod>2026-10-01T15:14:09Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/aboutus/</loc>
@@ -79,6 +79,10 @@
   <url>
     <loc>https://www.zjtf.org/posts/gyrk1/</loc>
     <lastmod>2026-09-23T13:15:23Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.zjtf.org/posts/http-408-vs-client-timeout/</loc>
+    <lastmod>2026-10-02T01:08:34Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/http-421-misdirected-request/</loc>
@@ -122,7 +126,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-09-23T13:15:05Z</lastmod>
+    <lastmod>2026-10-02T05:06:32Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj3/</loc>
