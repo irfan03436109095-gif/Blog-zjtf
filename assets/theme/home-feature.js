@@ -80,6 +80,11 @@
     try {
       const base = source.closest('.home-feature').querySelector('h2 a[href]').href;
       const fragment = render(original);
+      // 正文开头重复的文章标题已在卡片标题中展示，只移除内容相同的首标题。
+      const compactTitle = value => value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
+      const first = fragment.firstElementChild;
+      const title = source.closest('.home-feature').querySelector('h2 a[href]');
+      if (first?.matches('h1,h2') && title && compactTitle(first.textContent) === compactTitle(title.textContent)) first.remove();
       let heading = 0;
       fragment.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(node => {
         const replacement = document.createElement('h' + Math.max(3, Number(node.tagName.slice(1))));
@@ -106,41 +111,4 @@
       source.classList.add('is-rendered');
     } catch { source.textContent = original; }
   }
-
-  function addCover(source) {
-    try {
-      const card = source.closest('.article-card');
-      const title = card.querySelector('h2 a[href]');
-      const fragment = render(source.content.textContent);
-      const img = fragment.querySelector('img');
-      source.remove();
-      if (!img || !title) return;
-      const link = document.createElement('a');
-      link.className = 'card-image-link';
-      link.dataset.cardImageLink = '';
-      link.href = title.href;
-      link.setAttribute('aria-label', '阅读全文：' + title.textContent);
-      img.alt = img.alt || title.textContent;
-      link.append(img);
-      card.prepend(link);
-      prepareImage(img, 0, title.href, () => link.remove());
-    } catch { source.remove(); }
-  }
-  const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      observer.unobserve(entry.target);
-      const source = entry.target.querySelector('[data-card-image-source]');
-      if (source) addCover(source);
-    });
-  }, { rootMargin: '600px 0px' }) : null;
-  function enhanceCards() {
-    document.querySelectorAll('[data-card-image-source]:not([data-observed])').forEach(source => {
-      source.dataset.observed = '';
-      if (observer) observer.observe(source.closest('.article-card'));
-      else addCover(source);
-    });
-  }
-  enhanceCards();
-  document.addEventListener('chengguang:articles-added', enhanceCards);
 })();

@@ -42,6 +42,18 @@
   // 文章使用独立滚动容器，不能滚动 window；按钮仅在正文下滑后出现。
   const articleScroll = document.querySelector(".article-scroll");
   const backToTop = document.getElementById("back-to-top");
+  // 作者在正文开头再次写文章标题时，保留原始 HTML 与锚点，减少视觉重复。
+  if (articleScroll) {
+    const first = document.querySelector('article[data-pagefind-body] > .prose')?.firstElementChild;
+    const title = document.querySelector('article[data-pagefind-body] > .article-header h1');
+    const compact = value => value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
+    if (first?.matches('h2,h3') && title && compact(first.textContent) === compact(title.textContent)) {
+      first.classList.add('visually-hidden');
+      document.querySelectorAll('.toc a').forEach(link => {
+        if (link.hash === '#' + first.id && compact(link.textContent) === compact(title.textContent)) link.hidden = true;
+      });
+    }
+  }
   if (articleScroll && backToTop) {
     const updateBackToTop = () => {
       backToTop.hidden = articleScroll.scrollTop < 320;
