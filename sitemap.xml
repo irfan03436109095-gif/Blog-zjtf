@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.zjtf.org/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/cat1/</loc>
@@ -18,11 +18,11 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/protocols-network/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/protocols-network/page/2/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/risk-observations/</loc>
@@ -42,15 +42,19 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/page/2/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/3/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/4/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.zjtf.org/page/5/</loc>
+    <lastmod>2026-10-04T01:28:23Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/2026-airport-risk-roundup-testing/</loc>
@@ -82,7 +86,11 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/http-204-no-content-check/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.zjtf.org/posts/http-304-cache-speed-test/</loc>
+    <lastmod>2026-10-04T01:28:23Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/http-408-vs-client-timeout/</loc>
@@ -130,7 +138,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj3/</loc>
@@ -226,7 +234,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/jctj/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/quic/</loc>
@@ -246,10 +254,10 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/syjc1/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/syjc1/page/2/</loc>
-    <lastmod>2026-10-03T08:53:42Z</lastmod>
+    <lastmod>2026-10-04T01:28:30Z</lastmod>
   </url>
 </urlset>
