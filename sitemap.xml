@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.zjtf.org/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/cat1/</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/syjc1/</loc>
-    <lastmod>2026-10-04T06:37:38Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/categories/travel-guides/</loc>
@@ -42,19 +42,19 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/page/2/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/3/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/4/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/page/5/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/2026-airport-risk-roundup-testing/</loc>
@@ -67,6 +67,10 @@
   <url>
     <loc>https://www.zjtf.org/posts/ai-chip-headlines-inference-speed-explained-20260930/</loc>
     <lastmod>2026-10-03T08:53:42Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.zjtf.org/posts/airport-speed-latency-jitter-packet-loss/</loc>
+    <lastmod>2026-10-07T13:25:03Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/airport-subscription-beginner-illustrated-2026/</loc>
@@ -150,7 +154,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj2/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/jctj3/</loc>
@@ -162,7 +166,7 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/proxy-encryption-https-boundary/</loc>
-    <lastmod>2026-10-07T01:21:31Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/posts/retry-after-proxy-backoff/</loc>
@@ -270,10 +274,10 @@
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/syjc1/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
   <url>
     <loc>https://www.zjtf.org/tags/syjc1/page/2/</loc>
-    <lastmod>2026-10-07T01:21:39Z</lastmod>
+    <lastmod>2026-10-07T13:27:25Z</lastmod>
   </url>
 </urlset>
