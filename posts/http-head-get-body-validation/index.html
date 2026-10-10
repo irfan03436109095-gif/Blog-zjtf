@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FlyBit机场入门：注册试用与套餐选择指南 · 酌酒听风机场测评</title>
-<meta name="description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
-<meta name="keywords" content="FlyBit机场,FlyBit注册,FlyBit试用,FlyBit邀请码,机场套餐,机场订阅,机场入门">
-<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.zjtf.org/posts/jctj2/">
-<meta property="og:title" content="FlyBit机场入门：注册试用与套餐选择指南">
-<meta property="og:description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
-<meta property="og:url" content="https://www.zjtf.org/posts/jctj2/">
+<title>HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收 · 酌酒听风机场测评</title>
+<meta name="description" content="HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。">
+<meta name="keywords" content="机场推荐,HEAD与GET,响应头检查,下载验收">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://www.zjtf.org/posts/http-head-get-body-validation/">
+<meta property="og:title" content="HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收">
+<meta property="og:description" content="HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。">
+<meta property="og:url" content="https://www.zjtf.org/posts/http-head-get-body-validation/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="酌酒听风机场测评">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png"><meta property="og:image:alt" content="酌酒听风机场测评">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FlyBit机场入门：注册试用与套餐选择指南">
-<meta name="twitter:description" content="了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。">
+<meta name="twitter:title" content="HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收">
+<meta name="twitter:description" content="HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。">
 <meta name="twitter:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="CPU干冒烟了"><meta property="article:published_time" content="2026-09-13T20:35:02&#43;08:00"><meta property="article:modified_time" content="2026-09-23T21:15:05&#43;08:00"><meta property="article:tag" content="机场推荐">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/jctj2/#article","@type":"BlogPosting","author":{"@type":"Person","name":"CPU干冒烟了"},"dateModified":"2026-09-23T21:15:05+08:00","datePublished":"2026-09-13T20:35:02+08:00","description":"了解 FlyBit 机场的注册入口、试用活动和邀请码使用方法，掌握连接体验的测试要点，并根据流量需求、有效期和设备限制选择合适的套餐。","headline":"FlyBit机场入门：注册试用与套餐选择指南","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/jctj2/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/jctj2/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/jctj2/","name":"FlyBit机场入门：注册试用与套餐选择指南","position":2}]}]}</script>
+<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-10T09:20:48&#43;08:00"><meta property="article:modified_time" content="2026-10-10T09:20:51&#43;08:00"><meta property="article:tag" content="机场推荐"><meta property="article:tag" content="使用教程">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-10T09:20:51+08:00","datePublished":"2026-10-10T09:20:48+08:00","description":"HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。","headline":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/http-head-get-body-validation/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/http-head-get-body-validation/","name":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css?v=1.2.1">
@@ -69,47 +69,81 @@
 <div class="article-viewport"><div class="article-scroll">
 <main id="main" tabindex="-1" class="shell article-shell" data-has-toc="true">
 
-<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://www.zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">FlyBit机场入门：注册试用与套餐选择指南</span></li></ol></nav>
+<nav class="breadcrumbs" aria-label="面包屑导航" data-pagefind-ignore><ol><li><a href="https://www.zjtf.org/">酌酒听风机场测评</a></li><li><span aria-current="page">HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收</span></li></ol></nav>
 
 
 <article data-pagefind-body>
-<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文章阅读 · 置顶文章</div><h1 data-pagefind-meta="title">FlyBit机场入门：注册试用与套餐选择指南</h1>
-<div class="metadata" data-pagefind-ignore><span>CPU干冒烟了</span><time datetime="2026-09-13T20:35:02&#43;08:00">2026-09-13</time><span><span id="page-views">—</span> 次阅读</span></div>
-<div class="chips" data-pagefind-ignore><a href="https://www.zjtf.org/categories/cat1/">机场推荐</a></div>
+<header class="article-header"><div class="eyebrow" data-pagefind-ignore>文章阅读</div><h1 data-pagefind-meta="title">HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收</h1>
+<div class="metadata" data-pagefind-ignore><span>酌酒听风</span><time datetime="2026-10-10T09:20:48&#43;08:00">2026-10-10</time><span><span id="page-views">—</span> 次阅读</span></div>
+<div class="chips" data-pagefind-ignore><a href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></div>
 </header>
-<div class="prose"><p>已加入你的推广链接。该链接目前打开的是导航页，因此文中也保留了邀请码，方便读者注册时填写。</p>
-<h2 id="-flybit-">✈️ FlyBit 机场入门：先试用，再选择适合自己的套餐</h2>
-<p>挑选机场时，套餐价格、节点数量和线路名称，往往让人看得眼花缭乱。对普通用户来说，在自己的手机、电脑和常用网络里体验一次，更容易判断是否合适。</p>
-<p>如果你正在了解代理服务，可以从 <strong>FlyBit 的试用入口</strong>开始。</p>
-<p>🎁 <strong>先用试用额度，看看是否符合需求</strong></p>
-<p>FlyBit 公开页面目前标注“注册即可免费试用 2G”，并以“专线＋中转”为服务卖点。试用领取条件、有效期和具体可用节点，以站内最新说明为准。<a href="https://goflybit.com/#/register?code=gPinVG8C">查看 FlyBit 官方页面</a></p>
-<p>这份试用额度，可以用来检查日常网页访问、常用应用连接和基础操作是否顺畅。测试时留意流量消耗，把额度优先用在自己最常使用的场景。</p>
-<p>📱 <strong>体验时，重点看这三件事</strong></p>
+<div class="prose"><p>只用一条 <code>curl -I</code> 命令得到正常状态，适合说明头部请求的结果，却没有检查文件正文能否完整传完。协议工具回答的范围不同，选购和排障记录也要对应这个范围。</p>
+<p>本文适合了解 HTTP 基本请求的人。使用允许访问的小页面或小文件，避免用大型下载来补做一项本来只需要有限流量的验收。</p>
+<p><img src="https://www.zjtf.org/assets/media/f6b4f675-415e-46d6-9186-4f27c0fb8973.png" alt="HEAD 只取响应头与 GET 取响应头和正文的两条独立请求示意"></p>
+<p><em>示意图：头部检查与正文验收各有范围，下载任务需检查实际内容。</em></p>
+<h2 id="head-">HEAD 省略了什么</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2">RFC 9110 的 HEAD 定义</a>要求服务端不在 HEAD 响应中发送正文。它可用于获取相关表示的元数据，而不是下载该表示本身。</p>
+<p>因此，头部里的 <code>Content-Length</code> 即使不是零，也不能理解为 HEAD 已经收到这么多正文。应把它看作头部信息，再检查你实际执行的方法和收到的内容。HEAD 的字段也不保证与另一时刻的 GET 响应逐项完全相同。</p>
+<h2 id="heading">分开保存两种请求</h2>
+<p><a href="https://curl.se/docs/manpage.html">curl 官方手册</a>说明 <code>-I</code> 使用 HEAD 获取头部。不要只用 <code>-X HEAD</code> 改方法名称来替代这个专门选项。</p>
+<p>Windows PowerShell 示例，域名用于说明结构：</p>
+<pre><code class="language-powershell">$target = 'https://example.com/'
+curl.exe -q -I --connect-timeout 8 --max-time 20 -o head-response.txt --url $target
+$LASTEXITCODE
+curl.exe -q --connect-timeout 8 --max-time 20 -D get-headers.txt -o get-body.txt -w 'http=%{http_code} bytes=%{size_download}\n' --url $target
+$LASTEXITCODE
+</code></pre>
+<p>目标替换为自己有权检查的小资源，使用未占用的文件名。两轮采用相同网络和已明确的代理路径，分别保存结束状态；它们仍然是两次独立请求，不是同一响应的两个部分。</p>
+<h2 id="heading-1">不同观察对应不同结论</h2>
+<table>
+<thead>
+<tr>
+<th>观察</th>
+<th>可以说明什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HEAD 完成且状态符合预期</td>
+<td>本次头部请求完成</td>
+</tr>
+<tr>
+<td>GET 得到预期正文并正常结束</td>
+<td>本次正文请求完成</td>
+</tr>
+<tr>
+<td>HEAD 正常，GET 中途中止</td>
+<td>头部结果不足以覆盖传输阶段</td>
+</tr>
+<tr>
+<td>HEAD 返回方法不支持</td>
+<td>该方法的结果，GET 仍需另查</td>
+</tr>
+<tr>
+<td>GET 保存了错误说明页</td>
+<td>收到内容，但不是所需文件</td>
+</tr>
+</tbody>
+</table>
+<p>不要把 GET 的错误页面当作文件完整性通过。文件类型、正文用途和服务端提供的可信校验信息，都应按你原先要完成的任务核对。</p>
+<h2 id="heading-2">验收重点按用途选择</h2>
+<p>若只是检查某个公开页面的头部，HEAD 的结果可以有价值；若需求是下载、图片显示或文档阅读，就必须实际检查相应内容。小页面完成也不能证明大型文件在较长时间内都稳定。</p>
+<p>建议记录方法、目标、时间、路径、状态、是否有预期正文和退出结果。目标有签名有效期、账号或不同访问政策时，先按正式说明确认测试条件，而不是拿两种不同权限的请求作对照。</p>
+<h2 id="heading-3">怎样用在机场推荐记录里</h2>
+<p>把“头部可达”“小内容完成”“实际任务完成”分成不同证据项。可以采用这些项目逐步验收，但不能用第一项自动填满后两项。工具越轻量，越需要准确说明它究竟检查了哪一层。</p>
+<h2 id="heading-4">来源与核验日期</h2>
 <ul>
-<li><strong>是否容易上手</strong>：你的设备能否使用兼容客户端，订阅配置是否顺利。</li>
-<li><strong>常用场景是否顺畅</strong>：实际打开网页、加载内容，观察等待时间和连接情况。</li>
-<li><strong>不同时段是否稳定</strong>：在白天和晚上分别体验，看看是否频繁出现中断。</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2">RFC 9110：HEAD 请求语义</a></li>
+<li><a href="https://curl.se/docs/manpage.html">curl：head 选项</a></li>
 </ul>
-<p>一次测速只是参考。连续几次日常使用的感受，更能帮助你判断服务是否适合自己。</p>
-<p>💰 <strong>套餐按需求选，花钱更有方向</strong></p>
-<p>体验合适后，再查看当前套餐的流量额度、有效期、设备限制和计费规则。</p>
-<p>偶尔使用，可以优先比较小额度或短周期方案；使用频率较高，则需要估算每月流量需求。具体选择以站内实际提供的套餐为准。</p>
-<p>🚀 <strong>从这里开始了解 FlyBit</strong></p>
-<ol>
-<li>点击下方推广入口，在导航页选择可用入口。</li>
-<li>进入注册页，按页面要求完成注册。</li>
-<li>邀请码填写：<code>gPinVG8C</code>。</li>
-<li>查看试用活动和使用说明，再根据实际体验决定是否购买。</li>
-</ol>
-<p>👉 <strong><a href="https://goflybit.com/#/register?code=gPinVG8C">进入 FlyBit，查看注册与试用信息</a></strong></p>
-<p>找到适合自己的机场，可以从一次贴近日常需求的试用开始。连接是否顺手、套餐是否合适，亲自体验后再做决定。</p>
+<p>官方资料核验日期：2026-10-10。本文的操作与判断方法供读者自行核对，不代表本站对某家机场的实测结论。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场推荐</a></nav>
-<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/jccp1/">← 上一篇</a><a href="https://www.zjtf.org/posts/http-head-get-body-validation/">下一篇 →</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场推荐</a><a href="https://www.zjtf.org/tags/syjc1/"># 使用教程</a></nav>
+<nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/jctj2/">← 上一篇</a><a href="https://www.zjtf.org/posts/http-202-accepted-result-check/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
-<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#-flybit-">✈️ FlyBit 机场入门：先试用，再选择适合自己的套餐</a></nav></aside><aside class="ad-slot" aria-label="内容页侧边广告" data-ad-position="article_sidebar" data-pagefind-ignore><a class="ad-card" href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="sponsored noopener noreferrer" aria-label="99吧 · 内容页侧边邀请入口（在新标签页打开）" data-ad-link>
+<div class="article-rail"><aside class="toc" data-pagefind-ignore><div>本篇目录</div><nav aria-label="文章目录"><a class="level-2" href="#head-">HEAD 省略了什么</a><a class="level-2" href="#heading">分开保存两种请求</a><a class="level-2" href="#heading-1">不同观察对应不同结论</a><a class="level-2" href="#heading-2">验收重点按用途选择</a><a class="level-2" href="#heading-3">怎样用在机场推荐记录里</a><a class="level-2" href="#heading-4">来源与核验日期</a></nav></aside><aside class="ad-slot" aria-label="内容页侧边广告" data-ad-position="article_sidebar" data-pagefind-ignore><a class="ad-card" href="https://99ba.net/#/register?code=sExBbdk9" target="_blank" rel="sponsored noopener noreferrer" aria-label="99吧 · 内容页侧边邀请入口（在新标签页打开）" data-ad-link>
 
 <div class="ad-copy"><h3>99吧</h3>
 <p>先看当前试用与套餐，再决定是否适合自己。</p>
@@ -157,7 +191,7 @@
 </div>
 </dialog>
 
-<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/37ed8dbc-756d-4d61-bc30-c825047f10d2/","pageTitle":"FlyBit机场入门：注册试用与套餐选择指南","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
+<script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/b037961a-5a03-428c-aa8c-5f4b85c6bd0c/","pageTitle":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
 
 </body>
 </html>
