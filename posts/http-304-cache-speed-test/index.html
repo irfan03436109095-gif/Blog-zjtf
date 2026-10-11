@@ -174,6 +174,45 @@
 </dialog>
 
 <script id="blog-comments-config" type="application/json">{"comments":true,"likes":true,"locale":"zh-CN","pageKey":"/p/a274a9b2-94a4-4856-81f9-798b05baab1d/","pageTitle":"HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开","server":"https://upfqpobmiewm.sealosgzg.site","site":"xblog-36fb621b-6ec6-4daa-8149-b37918f71b4c","views":true,"viewsBase":0}</script>
-
+<!-- zjtf.org：为已披露的推广入口补充搜索引擎链接属性。 -->
+<script>
+(() => {
+  'use strict';
+  const invites = new Map([['goflybit.com', 'gPinVG8C'], ['99ba.net', 'sExBbdk9']]);
+  function qualify(link) {
+    let url;
+    try { url = new URL(link.getAttribute('href'), document.baseURI); } catch { return; }
+    if (!['http:', 'https:'].includes(url.protocol)) return;
+    const expected = invites.get(url.hostname);
+    if (!expected) return;
+    const question = url.hash.indexOf('?');
+    const fragment = question >= 0 ? new URLSearchParams(url.hash.slice(question + 1)) : null;
+    const code = url.searchParams.get('code') || fragment?.get('code');
+    if (code !== expected) return;
+    const rel = new Set((link.getAttribute('rel') || '').split(/\s+/).filter(Boolean));
+    rel.add('sponsored'); rel.add('noopener'); rel.add('noreferrer');
+    const value = [...rel].join(' ');
+    if (link.getAttribute('rel') !== value) link.setAttribute('rel', value);
+  }
+  function qualifyTree(root) {
+    if (root.nodeType !== 1) return;
+    if (root.matches('a[href]')) qualify(root);
+    root.querySelectorAll('a[href]').forEach(qualify);
+  }
+  function start() {
+    if (!document.body) return;
+    qualifyTree(document.body);
+    new MutationObserver(records => {
+      for (const record of records) {
+        if (record.type === 'attributes') {
+          if (record.target.matches('a[href]')) qualify(record.target);
+        } else { record.addedNodes.forEach(qualifyTree); }
+      }
+    }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['href', 'rel'] });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+  else start();
+})();
+</script>
 </body>
 </html>
