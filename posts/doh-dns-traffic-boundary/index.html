@@ -18,8 +18,8 @@
 <meta name="twitter:title" content="开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法">
 <meta name="twitter:description" content="安全 DNS 和机场代理有什么区别？依据 RFC 8484 分清 DoH 的解析通道、解析器与网站连接，用三项记录检查故障和保护范围。">
 <meta name="twitter:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-06T09:23:03&#43;08:00"><meta property="article:modified_time" content="2026-10-06T09:23:14&#43;08:00"><meta property="article:tag" content="使用教程"><meta property="article:tag" content="DNS">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-06T09:23:14+08:00","datePublished":"2026-10-06T09:23:03+08:00","description":"安全 DNS 和机场代理有什么区别？依据 RFC 8484 分清 DoH 的解析通道、解析器与网站连接，用三项记录检查故障和保护范围。","headline":"开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/","name":"开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法","position":2}]}]}</script>
+<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-06T09:23:03&#43;08:00"><meta property="article:modified_time" content="2026-10-11T19:45:30&#43;08:00"><meta property="article:tag" content="客户端与连接教程"><meta property="article:tag" content="DNS">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-11T19:45:30+08:00","datePublished":"2026-10-06T09:23:03+08:00","description":"安全 DNS 和机场代理有什么区别？依据 RFC 8484 分清 DoH 的解析通道、解析器与网站连接，用三项记录检查故障和保护范围。","headline":"开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/doh-dns-traffic-boundary/","name":"开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css?v=1.2.1">
@@ -79,7 +79,7 @@
 </header>
 <div class="prose"><p>浏览器显示“安全 DNS 已开启”，只说明你配置了某一种解析方式，不能据此认定所有网页流量已经经过 VPN 或机场代理。解析域名和向网站传输内容，是两项不同的网络工作。</p>
 <p>本文用于理解 DoH 与连接路径，适合遇到“解析成功但网页仍打不开”的读者，不要求更换 DNS 服务商。</p>
-<p><img src="https://www.zjtf.org/assets/media/36f88d44-3821-42b5-b751-7fe8952e7591.png" alt="电脑分别连接 DNS 解析器和目标网站的两条独立通道"></p>
+<p><img src="https://www.zjtf.org/assets/media/1677660a-5b06-4f15-a5ea-3c1d5096fdfa.webp" alt="电脑分别连接 DNS 解析器和目标网站的两条独立通道"></p>
 <p><em>示意图：加密 DNS 与网站连接属于不同通道，具体路径由实际配置决定。</em></p>
 <h2 id="doh-">DoH 保护的是哪一步</h2>
 <p>DNS 查询帮助应用找到域名对应的地址。DoH 把 DNS 消息放进 HTTPS 传输。<a href="https://www.rfc-editor.org/rfc/rfc8484.html#section-8">RFC 8484</a>说明了它对 DNS 传输的加密、服务器认证及解析服务端的隐私考虑。</p>
@@ -126,7 +126,7 @@
 <p>官方资料核验日期：2026-10-06。文中的表格和流程用于自行检查，不代表本站对某家机场的实测结论。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/syjc1/"># 使用教程</a><a href="https://www.zjtf.org/tags/dns/"># DNS</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/syjc1/"># 客户端与连接教程</a><a href="https://www.zjtf.org/tags/dns/"># DNS</a></nav>
 <nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/proxy-encryption-https-boundary/">← 上一篇</a><a href="https://www.zjtf.org/posts/gzip-chunked-http-layers/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>

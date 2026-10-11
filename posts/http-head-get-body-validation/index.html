@@ -18,8 +18,8 @@
 <meta name="twitter:title" content="HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收">
 <meta name="twitter:description" content="HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。">
 <meta name="twitter:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-10T09:20:48&#43;08:00"><meta property="article:modified_time" content="2026-10-10T09:20:51&#43;08:00"><meta property="article:tag" content="机场推荐"><meta property="article:tag" content="使用教程">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-10T09:20:51+08:00","datePublished":"2026-10-10T09:20:48+08:00","description":"HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。","headline":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/http-head-get-body-validation/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/http-head-get-body-validation/","name":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","position":2}]}]}</script>
+<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-10T09:20:48&#43;08:00"><meta property="article:modified_time" content="2026-10-11T19:45:50&#43;08:00"><meta property="article:tag" content="机场选购与网络排障"><meta property="article:tag" content="客户端与连接教程">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-11T19:45:50+08:00","datePublished":"2026-10-10T09:20:48+08:00","description":"HTTP HEAD 与 GET 有什么区别？用 curl -I 检查响应头，再单独验收 GET 正文，正确理解 Content-Length 和只测头部的判断边界。","headline":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/http-head-get-body-validation/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/http-head-get-body-validation/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/http-head-get-body-validation/","name":"HEAD 请求成功就能证明下载正常吗？响应头与正文分别验收","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css?v=1.2.1">
@@ -79,7 +79,7 @@
 </header>
 <div class="prose"><p>只用一条 <code>curl -I</code> 命令得到正常状态，适合说明头部请求的结果，却没有检查文件正文能否完整传完。协议工具回答的范围不同，选购和排障记录也要对应这个范围。</p>
 <p>本文适合了解 HTTP 基本请求的人。使用允许访问的小页面或小文件，避免用大型下载来补做一项本来只需要有限流量的验收。</p>
-<p><img src="https://www.zjtf.org/assets/media/f6b4f675-415e-46d6-9186-4f27c0fb8973.png" alt="HEAD 只取响应头与 GET 取响应头和正文的两条独立请求示意"></p>
+<p><img src="https://www.zjtf.org/assets/media/c0f0e3cd-f8cf-47b9-a2d5-56b9baf6b19f.webp" alt="HEAD 只取响应头与 GET 取响应头和正文的两条独立请求示意"></p>
 <p><em>示意图：头部检查与正文验收各有范围，下载任务需检查实际内容。</em></p>
 <h2 id="head-">HEAD 省略了什么</h2>
 <p><a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2">RFC 9110 的 HEAD 定义</a>要求服务端不在 HEAD 响应中发送正文。它可用于获取相关表示的元数据，而不是下载该表示本身。</p>
@@ -139,7 +139,7 @@ $LASTEXITCODE
 <p>官方资料核验日期：2026-10-10。本文的操作与判断方法供读者自行核对，不代表本站对某家机场的实测结论。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场推荐</a><a href="https://www.zjtf.org/tags/syjc1/"># 使用教程</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场选购与网络排障</a><a href="https://www.zjtf.org/tags/syjc1/"># 客户端与连接教程</a></nav>
 <nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/http-404-410-resource-check/">← 上一篇</a><a href="https://www.zjtf.org/posts/http-202-accepted-result-check/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>

@@ -18,8 +18,8 @@
 <meta name="twitter:title" content="下载返回 HTTP 206 是失败吗？按请求范围验收部分响应">
 <meta name="twitter:description" content="HTTP 206 Partial Content 是下载失败吗？核对请求范围、响应区间和实际字节数，避免把部分响应当作整份文件或机场测速结论。">
 <meta name="twitter:image" content="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
-<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-08T09:31:53&#43;08:00"><meta property="article:modified_time" content="2026-10-08T09:31:55&#43;08:00"><meta property="article:tag" content="机场推荐"><meta property="article:tag" content="使用教程">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/http-206-range-response-check/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-08T09:31:55+08:00","datePublished":"2026-10-08T09:31:53+08:00","description":"HTTP 206 Partial Content 是下载失败吗？核对请求范围、响应区间和实际字节数，避免把部分响应当作整份文件或机场测速结论。","headline":"下载返回 HTTP 206 是失败吗？按请求范围验收部分响应","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/http-206-range-response-check/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/http-206-range-response-check/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/http-206-range-response-check/","name":"下载返回 HTTP 206 是失败吗？按请求范围验收部分响应","position":2}]}]}</script>
+<meta name="author" content="酌酒听风"><meta property="article:published_time" content="2026-10-08T09:31:53&#43;08:00"><meta property="article:modified_time" content="2026-10-11T19:45:38&#43;08:00"><meta property="article:tag" content="机场选购与网络排障"><meta property="article:tag" content="客户端与连接教程">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://www.zjtf.org/posts/http-206-range-response-check/#article","@type":"BlogPosting","author":{"@type":"Person","name":"酌酒听风"},"dateModified":"2026-10-11T19:45:38+08:00","datePublished":"2026-10-08T09:31:53+08:00","description":"HTTP 206 Partial Content 是下载失败吗？核对请求范围、响应区间和实际字节数，避免把部分响应当作整份文件或机场测速结论。","headline":"下载返回 HTTP 206 是失败吗？按请求范围验收部分响应","inLanguage":"zh-CN","mainEntityOfPage":{"@id":"https://www.zjtf.org/posts/http-206-range-response-check/","@type":"WebPage"},"url":"https://www.zjtf.org/posts/http-206-range-response-check/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.zjtf.org/","name":"酌酒听风机场测评","position":1},{"@type":"ListItem","item":"https://www.zjtf.org/posts/http-206-range-response-check/","name":"下载返回 HTTP 206 是失败吗？按请求范围验收部分响应","position":2}]}]}</script>
 
 <script>(()=>{let mode='system';try{const saved=localStorage.getItem('reader-theme');if(['system','light','dark'].includes(saved))mode=saved}catch{}const root=document.documentElement;root.dataset.colorMode=mode;root.classList.toggle('dark',mode==='dark'||(mode==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})();</script>
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css?v=1.2.1">
@@ -79,7 +79,7 @@
 </header>
 <div class="prose"><p>下载工具或浏览器显示 <code>206 Partial Content</code>，并不等于文件传输失败。它可能正在按请求取回资源的一部分。判断是否成功，要先知道本次原本要求下载什么。</p>
 <p>本文只讨论一次单区间的 HTTP 范围响应。多段合并、断点续传和资源更新还需交给支持这些行为的工具处理，不手工把来源不明的片段拼起来。</p>
-<p><img src="https://www.zjtf.org/assets/media/47358f89-ce24-4ca6-adfb-e09610904a6f.png" alt="完整文件中一个选定区间被单独传输的示意"></p>
+<p><img src="https://www.zjtf.org/assets/media/46b2898b-258d-42c9-a97d-50d7288cbf23.webp" alt="完整文件中一个选定区间被单独传输的示意"></p>
 <p><em>示意图：取回指定区间和拿到整份文件是两种验收目标。</em></p>
 <h2 id="206-">206 表示成功返回了部分内容</h2>
 <p><a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC 9110 第 15.3.7 节</a>定义了 206：服务端成功满足范围请求，传回选定表示的一个或多个部分。单区间响应用 <code>Content-Range</code> 说明所含区间。</p>
@@ -137,7 +137,7 @@
 <p>官方资料核验日期：2026-10-08。本文提供自行操作与记录的方法，不代表本站对某家机场的实测结论。</p>
 </div>
 <div class="article-likes" data-pagefind-ignore><button id="page-like" class="like-button" type="button" aria-pressed="false" aria-describedby="page-like-message" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span id="page-like-label">喜欢这篇文章</span><span id="page-like-count">—</span></button><p id="page-like-message" role="status"></p></div>
-<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场推荐</a><a href="https://www.zjtf.org/tags/syjc1/"># 使用教程</a></nav>
+<nav class="article-tags" aria-label="文章标签" data-pagefind-ignore><a href="https://www.zjtf.org/tags/jctj/"># 机场选购与网络排障</a><a href="https://www.zjtf.org/tags/syjc1/"># 客户端与连接教程</a></nav>
 <nav class="pagination" aria-label="相邻文章" data-pagefind-ignore><a href="https://www.zjtf.org/posts/http-202-accepted-result-check/">← 上一篇</a><a href="https://www.zjtf.org/posts/airport-speed-latency-jitter-packet-loss/">下一篇 →</a></nav>
 <section class="comments-section" data-pagefind-ignore><div class="eyebrow">留下你的回声</div><h2>评论</h2><div id="comments"></div></section>
 </article>
