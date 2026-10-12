@@ -1,0 +1,32 @@
+/* 首页侧边广告完整展开，由页面承担滚动。 */
+.qh-page .qh-main > .qh-home-ad-rail {
+  position: static;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+.qh-page .qh-main > .qh-home-ad-rail > .ad-slot[data-ad-position="home_sidebar"] {
+  flex: 0 0 auto;
+  min-height: auto;
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+/* 内容页侧边广告完整展开，由正文阅读区域承担滚动。 */
+.qh-page.article-page .qh-article-main > .article-rail {
+  position: static;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  align-self: start;
+}
+.qh-page.article-page .qh-article-main > .article-rail > .ad-slot[data-ad-position="article_sidebar"] {
+  flex: 0 0 auto;
+  min-height: auto;
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+}

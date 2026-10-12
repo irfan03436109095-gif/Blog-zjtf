@@ -1,0 +1,8 @@
+.qh-home-overview{margin-bottom:1.6rem}
+.qh-home-overview p{max-width:58rem;line-height:1.85;overflow-wrap:anywhere}
+.qh-home-topics{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.15rem}
+.qh-home-topics a{display:inline-flex;gap:.6rem;align-items:center;padding:.55rem .85rem;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-size:.9rem}
+.qh-home-topics a:hover,.qh-home-topics a:focus-visible{color:var(--accent);border-color:var(--accent)}
+.qh-home-article-list{min-width:0;scroll-margin-top:6rem}
+.qh-home-article-list .summary{overflow-wrap:anywhere}
+@media(max-width:760px){.qh-home-topics{gap:.5rem}.qh-home-topics a{padding:.5rem .7rem;font-size:.85rem}.qh-home-overview{margin-bottom:1rem}}

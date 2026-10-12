@@ -39,20 +39,28 @@
     }
   });
   setupMobileNavigation();
-  // 文章使用独立滚动容器，不能滚动 window；按钮仅在正文下滑后出现。
+  // 页头页脚始终留在视口中，首页、列表和文章仅滚动中间的内容容器。
+  // 保留 article-scroll 回退，兼容使用旧文章模板的自定义主题。
+  const pageScroll =
+    document.querySelector(".page-scroll") || document.querySelector(".article-scroll");
   const articleScroll = document.querySelector(".article-scroll");
   const backToTop = document.getElementById("back-to-top");
-  // 作者在正文开头再次写文章标题时，保留原始 HTML 与锚点，减少视觉重复。
-  if (articleScroll) {
-    const first = document.querySelector('article[data-pagefind-body] > .prose')?.firstElementChild;
-    const title = document.querySelector('article[data-pagefind-body] > .article-header h1');
-    const compact = value => value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
-    if (first?.matches('h2,h3') && title && compact(first.textContent) === compact(title.textContent)) {
-      first.classList.add('visually-hidden');
-      document.querySelectorAll('.toc a').forEach(link => {
-        if (link.hash === '#' + first.id && compact(link.textContent) === compact(title.textContent)) link.hidden = true;
-      });
+  if (pageScroll) {
+    // 页头、页脚会随菜单和友链换行而改变高度，侧栏使用真实正文视口而非估算值。
+    // 只观察尺寸变化；滚动悬停由 CSS 完成，不在每次滚动时重新计算布局。
+    const updateReadingHeight = () => {
+      const height = `${pageScroll.clientHeight}px`;
+      pageScroll.style.setProperty("--page-scroll-height", height);
+      pageScroll.style.setProperty("--article-scroll-height", height);
+    };
+    updateReadingHeight();
+    if (typeof ResizeObserver === "function") {
+      const observer = new ResizeObserver(updateReadingHeight);
+      observer.observe(pageScroll);
+    } else {
+      window.addEventListener("resize", updateReadingHeight);
     }
+    window.addEventListener("pageshow", updateReadingHeight);
   }
   if (articleScroll && backToTop) {
     const updateBackToTop = () => {

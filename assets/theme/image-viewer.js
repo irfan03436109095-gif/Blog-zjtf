@@ -28,7 +28,7 @@
   const isContentImage = (image) =>
     Boolean(
       (image.currentSrc || image.getAttribute("src")) &&
-      !image.closest("dialog, .viewer-container, [data-ad-link], [data-card-image-link]"),
+      !image.closest("dialog, .viewer-container, [data-ad-link]"),
     );
 
   function localize() {
