@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang-1.2.4.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-links-1.2.3.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
+<body class="qh-page">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -96,70 +96,60 @@
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/doh-dns-traffic-boundary/">开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法</a></h2>
 <p class="card-summary">DoH 保护 DNS 查询这一环节，网站连接与客户端接管仍需分别核对，不能用一个开关证明全部流量路径。</p>
 <div class="card-footer"><span><span>酌酒听风</span><time datetime="2026-10-06T09:23:03&#43;08:00">2026-10-06</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/doh-dns-traffic-boundary/" aria-label="阅读开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/gzip-chunked-http-layers/">gzip 和 chunked 是一回事吗？分清内容压缩与 HTTP 分块</a></h2>
 <p class="card-summary">从响应头区分 gzip 压缩与 HTTP/1.1 chunked 分块，理解两者可以同时出现。</p>
 <div class="card-footer"><span><span>酌酒听风</span><time datetime="2026-10-05T09:32:13&#43;08:00">2026-10-05</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/gzip-chunked-http-layers/" aria-label="阅读gzip 和 chunked 是一回事吗？分清内容压缩与 HTTP 分块">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/airport-subscription-beginner-illustrated-2026/">机场新手上手图解：电脑和手机如何导入订阅、开启连接</a></h2>
 <p class="card-summary">从注册购买、复制订阅到导入节点和开启连接，按 Windows、Mac、安卓与 iPhone 分别讲解。配有五张原创操作图、官方客户端下载入口和四项连接排查表。</p>
 <div class="card-footer"><span><span>酌酒听风</span><time datetime="2026-10-04T14:35:03&#43;08:00">2026-10-04</time><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/airport-subscription-beginner-illustrated-2026/" aria-label="阅读机场新手上手图解：电脑和手机如何导入订阅、开启连接">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-304-cache-speed-test/">HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开</a></h2>
 <p class="card-summary">解释 304、ETag 与本地缓存的关系，给出查看请求头、禁用缓存对照和完整下载验收步骤，避免把少量验证响应当成大文件传输速度。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-04T09:28:19&#43;08:00">2026-10-04</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-304-cache-speed-test/" aria-label="阅读HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-204-no-content-check/">HTTP 204 没有正文是故障吗？分清空响应与连接失败</a></h2>
 <p class="card-summary">解释 HTTP 204 的成功但无正文语义，分别检查状态、客户端报错和业务约定，避免把空响应判成机场断流。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-03T09:19:44&#43;08:00">2026-10-03</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-204-no-content-check/" aria-label="阅读HTTP 204 没有正文是故障吗？分清空响应与连接失败">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-408-vs-client-timeout/">HTTP 408 和本地超时一样吗？先看有没有服务器响应</a></h2>
 <p class="card-summary">区分服务器返回的HTTP 408与客户端连接或总超时，用响应状态、退出码和分阶段耗时决定重试方法。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-02T09:08:33&#43;08:00">2026-10-02</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-408-vs-client-timeout/" aria-label="阅读HTTP 408 和本地超时一样吗？先看有没有服务器响应">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/2026-airport-risk-roundup-testing/">2026跑路机场总汇：公开异常记录与测评判断边界（截至10月1日）</a></h2>
 <p class="card-summary">整理截至2026年10月1日的12条机场公开异常与恢复记录，另附快连区域退出公告；区分用户投诉、争议与恢复反馈，并从测评记录角度给出核查方法。</p>
 <div class="card-footer"><span><span>酌酒听风机场测评编辑部</span><time datetime="2026-10-01T23:14:05&#43;08:00">2026-10-01</time><a class="card-category" href="https://www.zjtf.org/categories/risk-observations/">风险观察</a></span><a class="read-more" href="https://www.zjtf.org/posts/2026-airport-risk-roundup-testing/" aria-label="阅读2026跑路机场总汇：公开异常记录与测评判断边界（截至10月1日）">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-421-misdirected-request/">HTTP 421 是节点故障吗？看懂连接复用与目标主机</a></h2>
 <p class="card-summary">解释HTTP 421与目标URI、连接上下文的关系，通过新连接、直连和代理对照定位复用或域名绑定问题。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-01T10:59:01&#43;08:00">2026-10-01</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-421-misdirected-request/" aria-label="阅读HTTP 421 是节点故障吗？看懂连接复用与目标主机">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/ai-chip-headlines-inference-speed-explained-20260930/">AI 芯片再成新闻热点：算力更强，为什么聊天服务仍会等待</a></h2>
 <p class="card-summary">从 Bing News 当前推荐的 AI 与芯片新闻延伸，解释用户请求、服务排队、模型处理和结果生成之间的关系，帮助读者用真实任务判断 AI 服务体验。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-30T21:03:25&#43;08:00">2026-09-30</time><a class="card-category" href="https://www.zjtf.org/categories/trending-topics/">热点观察</a></span><a class="read-more" href="https://www.zjtf.org/posts/ai-chip-headlines-inference-speed-explained-20260930/" aria-label="阅读AI 芯片再成新闻热点：算力更强，为什么聊天服务仍会等待">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/">新版 GPT 值得升级吗？GPT-6.1 Sol 功能解读、连接教程与订阅建议</a></h2>
 <p class="card-summary">依据官方资料解读 GPT-6.1 Sol 与新版 ChatGPT 工作功能，提供代理连接、新手操作、套餐价格和可复查的任务比较方法，不将示例冒充实测。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-30T19:57:32&#43;08:00">2026-09-30</time><a class="card-category" href="https://www.zjtf.org/categories/cat2/">数码科技</a><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/" aria-label="阅读新版 GPT 值得升级吗？GPT-6.1 Sol 功能解读、连接教程与订阅建议">阅读全文 <span aria-hidden="true">↗</span></a></div>

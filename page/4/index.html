@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang-1.2.4.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-links-1.2.3.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
+<body class="qh-page">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -96,70 +96,60 @@
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/retry-after-proxy-backoff/">遇到 429 或 503 要立刻重试吗？看懂 Retry-After</a></h2>
 <p class="card-summary">解释Retry-After的日期与秒数格式，按429、503和网关错误选择有限重试与退避。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-30T09:08:32&#43;08:00">2026-09-30</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/retry-after-proxy-backoff/" aria-label="阅读遇到 429 或 503 要立刻重试吗？看懂 Retry-After">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-redirect-method-semantics/">302 与 307 为什么不一样？代理排障先看重定向方法</a></h2>
 <p class="card-summary">区分301、302、303、307和308对请求方法的处理，用curl记录重定向链后再判断代理或节点问题。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-29T09:07:56&#43;08:00">2026-09-29</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-redirect-method-semantics/" aria-label="阅读302 与 307 为什么不一样？代理排障先看重定向方法">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/tls13-zero-rtt-replay/">TLS 1.3 的 0-RTT 为什么不是“免费加速”？先看重放风险</a></h2>
 <p class="card-summary">说明TLS 1.3早期数据如何依赖会话恢复、服务器为何可能拒绝，以及0-RTT重放风险对测试结论的限制。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-28T09:07:13&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls13-zero-rtt-replay/" aria-label="阅读TLS 1.3 的 0-RTT 为什么不是“免费加速”？先看重放风险">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/tls-alpn-http2-check/">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</a></h2>
 <p class="card-summary">解释TLS握手中的ALPN如何选择h2或HTTP/1.1，并用curl在固定目标下验证协议协商结果。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-27T09:07:02&#43;08:00">2026-09-27</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls-alpn-http2-check/" aria-label="阅读HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/tls-sni-host-difference/">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</a></h2>
 <p class="card-summary">拆解DNS、连接、TLS SNI、证书校验和HTTP Host的先后关系，避免用改请求头误修证书问题。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-26T09:06:54&#43;08:00">2026-09-26</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls-sni-host-difference/" aria-label="阅读同一 IP 为什么返回不同证书？SNI 与 Host 的区别">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/curl-resolve-connect-to/">不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别</a></h2>
 <p class="card-summary">用curl临时指定解析或连接目的地，把DNS、网络连接与TLS校验分开验证，不修改整机hosts。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-25T09:10:15&#43;08:00">2026-09-25</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/curl-resolve-connect-to/" aria-label="阅读不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-connect-tunnel-explained/">HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道</a></h2>
 <p class="card-summary">解释HTTP代理访问HTTPS时的CONNECT隧道、TLS握手与常见失败阶段，并用curl做最小观察。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-24T10:16:41&#43;08:00">2026-09-24</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-connect-tunnel-explained/" aria-label="阅读HTTPS 经过 HTTP 代理时发生了什么？看懂 CONNECT 隧道">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/curl-socks5h-dns-resolution/">socks5与socks5h有什么区别？用curl判断域名在哪一侧解析</a></h2>
 <p class="card-summary">同一个SOCKS代理仅改一个字母就出现不同结果？理解curl的本地解析与代理解析，做受控对照，并明确结果不能证明哪些事情。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-23T13:28:05&#43;08:00">2026-09-23</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/curl-socks5h-dns-resolution/" aria-label="阅读socks5与socks5h有什么区别？用curl判断域名在哪一侧解析">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http-socks5-mixed-proxy-ports/">HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南</a></h2>
 <p class="card-summary">本地代理端口是应用连接客户端的入口，不等于机场节点协议。区分HTTP CONNECT、SOCKS5与混合端口，再按应用能力验证TCP和UDP。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-22T11:37:22&#43;08:00">2026-09-22</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-socks5-mixed-proxy-ports/" aria-label="阅读HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
-
 <h2><a href="https://www.zjtf.org/posts/http3-quic-fallback-diagnosis/">开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证</a></h2>
 <p class="card-summary">网页能打开但协议显示h2，不能直接断言机场不支持UDP。区分网站能力、浏览器选择、代理接管和回退行为，再做同目标对照。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-21T14:32:05&#43;08:00">2026-09-21</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http3-quic-fallback-diagnosis/" aria-label="阅读开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证">阅读全文 <span aria-hidden="true">↗</span></a></div>

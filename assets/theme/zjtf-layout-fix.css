@@ -79,8 +79,6 @@
 .qh-home-cover { margin: 0 0 24px; }
 .qh-home-cover img { display: block; width: 100%; height: auto; border-radius: 5px; }
 .qh-home-remaining { margin-top: 14px; }
-.qh-restored-figure { margin: 16px 0 24px; }
-.qh-page .prose img.qh-restored-image { display: block; width: min(100%, 320px); height: auto; margin: 0 auto; object-fit: contain; }
 .article-cover { margin: 0 0 12px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; }
 .article-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 760px) {

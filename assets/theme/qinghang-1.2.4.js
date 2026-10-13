@@ -2,6 +2,21 @@
 (() => {
   const home = document.querySelector('[data-home-article]');
   const articleScroll = document.querySelector('.article-scroll');
+  // 在图片的 Markdown 标题中写 "width=240"，首页和文章页都会按此宽度显示。
+  function applyEditorImageWidths(root) {
+    root.querySelectorAll('img[title]').forEach((image) => {
+      const match = /^(?:width|宽度)\s*=\s*(\d{2,4})(?:px)?$/i.exec((image.getAttribute('title') || '').trim());
+      if (!match) return;
+      const width = Number(match[1]);
+      if (width < 40 || width > 1600) return;
+      image.style.width = `${width}px`;
+      image.style.maxWidth = '100%';
+      image.style.height = 'auto';
+      image.removeAttribute('title');
+    });
+  }
+  const articleProse = document.querySelector('.qh-article-main .prose');
+  if (articleProse) applyEditorImageWidths(articleProse);
   let disposeOutline = () => {};
   function setupOutline() {
     disposeOutline();
@@ -135,17 +150,26 @@
     });
     let baseURL;
     try { baseURL = new URL(home.dataset.articleUrl, document.baseURI); } catch {}
+    let siteHome;
+    try { siteHome = new URL(document.querySelector('.brand')?.getAttribute('href') || '/', document.baseURI); } catch {}
     fragment.querySelectorAll('[src],[href]').forEach((node) => {
       for (const attr of ['src', 'href']) {
         const value = node.getAttribute(attr);
         if (!value || value.startsWith('#') || !baseURL) continue;
-        try { node.setAttribute(attr, new URL(value, baseURL).href); } catch {}
+        try {
+          // 编辑器上传的 /assets/media/ 图片需兼容部署在 /blog/ 等子路径的站点。
+          const target = siteHome && value.startsWith('/assets/media/')
+            ? new URL(value.slice(1), siteHome)
+            : new URL(value, baseURL);
+          node.setAttribute(attr, target.href);
+        } catch {}
       }
       if (node.tagName === 'IMG') {
         node.loading = 'lazy';
         node.decoding = 'async';
       }
     });
+    applyEditorImageWidths(fragment);
     mountTOC(fragment);
     content.replaceChildren(...fragment.childNodes);
     prepareCodeCopy(content);
