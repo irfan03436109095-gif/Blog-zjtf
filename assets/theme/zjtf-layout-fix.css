@@ -1,0 +1,89 @@
+/* 酌酒听风 · 青航主题版式微调（追加到当前主题样式之后） */
+
+/* 图片横幅按原图比例显示，移除容器的外框和固定高度。 */
+.qh-page .site-banners {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.qh-page .banner-slide.banner-with-image:not(.banner-with-overlay) {
+  display: block;
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.qh-page .banner-slide.banner-with-image:not(.banner-with-overlay) .banner-image {
+  position: static;
+  inset: auto;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+/* 桌面端收窄侧栏与广告卡片，正文随之获得更多空间。 */
+@media (min-width: 1081px) {
+  .qh-page .qh-main:not(.qh-special-main) {
+    grid-template-columns: minmax(0, 1fr) 144px;
+  }
+
+  /* 首页两张推荐卡片跟随页面，停在固定导航下方。 */
+  .qh-page .qh-main > .qh-home-ad-rail {
+    position: sticky;
+    top: 76px;
+    align-self: start;
+    max-height: calc(100dvh - 88px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  .qh-page :is(.home-rail, .article-rail) .ad-card {
+    max-width: 144px;
+  }
+
+  .qh-page :is(.home-rail, .article-rail) .ad-copy {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+}
+
+/* 友链、版权和站点标识整体居中；小屏允许自然换行。 */
+.qh-page .site-footer,
+.qh-page .qh-footer-inner {
+  text-align: center;
+}
+
+.qh-page .friend-links {
+  justify-content: center;
+}
+
+.qh-page .qh-footer-bottom {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+/* 首页第一篇完整展开，后续文章仍按普通列表排布。 */
+.qh-home-article { padding: 20px 0 30px; border-bottom: 1px solid var(--line); min-width: 0; }
+.qh-home-article .article-header { margin-bottom: 25px; }
+.qh-home-article .article-header h2 { font-size: clamp(25px, 2.5vw, 33px); line-height: 1.45; margin: 8px 0 12px; overflow-wrap: anywhere; }
+.qh-home-article .article-header h2 a { color: var(--text); text-decoration: none; }
+.qh-home-article .article-header h2 a:hover { color: var(--accent); }
+.qh-home-cover { margin: 0 0 24px; }
+.qh-home-cover img { display: block; width: 100%; height: auto; border-radius: 5px; }
+.qh-home-remaining { margin-top: 14px; }
+.qh-restored-figure { margin: 16px 0 24px; }
+.qh-page .prose img.qh-restored-image { display: block; width: min(100%, 320px); height: auto; margin: 0 auto; object-fit: contain; }
+.article-cover { margin: 0 0 12px; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; }
+.article-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 760px) {
+  .qh-home-article { padding-top: 15px; }
+  .qh-home-article .article-header h2 { font-size: 25px; }
+}

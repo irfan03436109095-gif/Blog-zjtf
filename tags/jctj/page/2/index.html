@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/search.css"><script defer src="https://www.zjtf.org/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/zjtf-layout-fix.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/reader.css">
 <link rel="icon" href="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page">
+<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -91,41 +91,47 @@
 
 
 
-<section class="qh-home-article-list" aria-label="文章列表">
+<section id="qh-home-articles" class="qh-home-article-list" aria-label="文章列表">
 <div class="qh-list-heading"><h2>文章列表</h2><span>第 2 页</span></div>
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+<figure class="article-cover"><a href="https://www.zjtf.org/posts/gzip-chunked-http-layers/"><img src="https://www.zjtf.org/assets/media/0933194a-4f51-4040-abd5-9f7c67b02d56.webp" alt="gzip 和 chunked 是一回事吗？分清内容压缩与 HTTP 分块" loading="lazy" decoding="async"></a></figure>
 <h2><a href="https://www.zjtf.org/posts/gzip-chunked-http-layers/">gzip 和 chunked 是一回事吗？分清内容压缩与 HTTP 分块</a></h2>
 <p class="card-summary">从响应头区分 gzip 压缩与 HTTP/1.1 chunked 分块，理解两者可以同时出现。</p>
 <div class="card-footer"><span><span>酌酒听风</span><time datetime="2026-10-05T09:32:13&#43;08:00">2026-10-05</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/gzip-chunked-http-layers/" aria-label="阅读gzip 和 chunked 是一回事吗？分清内容压缩与 HTTP 分块">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+<figure class="article-cover"><a href="https://www.zjtf.org/posts/http-304-cache-speed-test/"><img src="https://www.zjtf.org/assets/media/98816829-ef81-4192-9e8b-9a2524c1ae5b.webp" alt="HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开" loading="lazy" decoding="async"></a></figure>
 <h2><a href="https://www.zjtf.org/posts/http-304-cache-speed-test/">HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开</a></h2>
 <p class="card-summary">解释 304、ETag 与本地缓存的关系，给出查看请求头、禁用缓存对照和完整下载验收步骤，避免把少量验证响应当成大文件传输速度。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-04T09:28:19&#43;08:00">2026-10-04</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-304-cache-speed-test/" aria-label="阅读HTTP 304 能证明机场下载快吗？把缓存验证和完整传输分开">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/jctj3/">✈️ 网络机场是什么？节点、订阅与线路入门科普</a></h2>
 <p class="card-summary">网络“机场”是提供代理节点、订阅和维护服务的服务商。本文介绍机场、节点、客户端与订阅的区别，解释线路、延迟和速度之间的关系，并说明代理服务的隐私保护边界。</p>
 <div class="card-footer"><span><span>CPU干冒烟了</span><time datetime="2026-09-12T21:07:21&#43;08:00">2026-09-12</time><a class="card-category" href="https://www.zjtf.org/categories/cat1/">机场推荐</a></span><a class="read-more" href="https://www.zjtf.org/posts/jctj3/" aria-label="阅读✈️ 网络机场是什么？节点、订阅与线路入门科普">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/syjc3/">安卓-ClashMeta使用教程</a></h2>
 <p class="card-summary">安卓-ClashMeta使用教程</p>
 <div class="card-footer"><span><span>三千烦恼风</span><time datetime="2026-09-12T09:45:08&#43;08:00">2026-09-12</time><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/syjc3/" aria-label="阅读安卓-ClashMeta使用教程">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/syjc2/">iOS端ShadowRocket使用教程</a></h2>
 <p class="card-summary">iOS端ShadowRocket使用教程</p>
 <div class="card-footer"><span><span>CPU干冒烟了</span><time datetime="2026-09-12T09:20:40&#43;08:00">2026-09-12</time><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/syjc2/" aria-label="阅读iOS端ShadowRocket使用教程">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/jc1/">Windows, Mac, Linux下的Clash Verge使用教程</a></h2>
 <p class="card-summary">Windows, Mac, Linux下的Clash  Verge使用教程 其实客户端有很多，但是操作基本上都大同小异，本文以Clash  Verge为例进行讲解 第一步：下载安装 官方Github下载地址：( ) windows(x64)客户端下载地址：( ) windows(arm)客户端下载地址：( ) mac(x64)客户端下载地址：( ) mac(…</p>
 <div class="card-footer"><span><span>lo5</span><time datetime="2026-09-11T21:28:15&#43;08:00">2026-09-11</time><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/jc1/" aria-label="阅读Windows, Mac, Linux下的Clash Verge使用教程">阅读全文 <span aria-hidden="true">↗</span></a></div>
@@ -139,7 +145,7 @@
 
 
 </div>
-<div class="home-rail"></div>
+<div class="home-rail qh-home-ad-rail"></div>
 </main>
 
 </div>

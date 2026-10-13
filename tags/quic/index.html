@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/search.css"><script defer src="https://www.zjtf.org/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/zjtf-layout-fix.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/reader.css">
 <link rel="icon" href="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page">
+<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -91,11 +91,12 @@
 
 
 
-<section class="qh-home-article-list" aria-label="文章列表">
+<section id="qh-home-articles" class="qh-home-article-list" aria-label="文章列表">
 <div class="qh-list-heading"><h2>文章列表</h2><span>第 1 页</span></div>
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/http3-quic-fallback-diagnosis/">开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证</a></h2>
 <p class="card-summary">网页能打开但协议显示h2，不能直接断言机场不支持UDP。区分网站能力、浏览器选择、代理接管和回退行为，再做同目标对照。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-21T14:32:05&#43;08:00">2026-09-21</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http3-quic-fallback-diagnosis/" aria-label="阅读开了机场代理却没有HTTP/3？看懂QUIC回退与UDP路径验证">阅读全文 <span aria-hidden="true">↗</span></a></div>
@@ -109,7 +110,7 @@
 
 
 </div>
-<div class="home-rail"></div>
+<div class="home-rail qh-home-ad-rail"></div>
 </main>
 
 </div>

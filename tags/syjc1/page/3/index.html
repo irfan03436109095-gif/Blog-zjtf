@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/search.css"><script defer src="https://www.zjtf.org/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/zjtf-layout-fix.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/reader.css">
 <link rel="icon" href="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page">
+<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -91,65 +91,75 @@
 
 
 
-<section class="qh-home-article-list" aria-label="文章列表">
+<section id="qh-home-articles" class="qh-home-article-list" aria-label="文章列表">
 <div class="qh-list-heading"><h2>文章列表</h2><span>第 3 页</span></div>
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/http-204-no-content-check/">HTTP 204 没有正文是故障吗？分清空响应与连接失败</a></h2>
 <p class="card-summary">解释 HTTP 204 的成功但无正文语义，分别检查状态、客户端报错和业务约定，避免把空响应判成机场断流。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-10-03T09:19:44&#43;08:00">2026-10-03</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-204-no-content-check/" aria-label="阅读HTTP 204 没有正文是故障吗？分清空响应与连接失败">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+<figure class="article-cover"><a href="https://www.zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/"><img src="https://www.zjtf.org/assets/media/e8706049-aee1-494f-ae8c-0474fd850922.png" alt="新版 GPT 值得升级吗？GPT-6.1 Sol 功能解读、连接教程与订阅建议" loading="lazy" decoding="async"></a></figure>
 <h2><a href="https://www.zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/">新版 GPT 值得升级吗？GPT-6.1 Sol 功能解读、连接教程与订阅建议</a></h2>
 <p class="card-summary">依据官方资料解读 GPT-6.1 Sol 与新版 ChatGPT 工作功能，提供代理连接、新手操作、套餐价格和可复查的任务比较方法，不将示例冒充实测。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-30T19:57:32&#43;08:00">2026-09-30</time><a class="card-category" href="https://www.zjtf.org/categories/cat2/">数码科技</a><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/gpt-61-sol-upgrade-connection-review-guide/" aria-label="阅读新版 GPT 值得升级吗？GPT-6.1 Sol 功能解读、连接教程与订阅建议">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/http-redirect-method-semantics/">302 与 307 为什么不一样？代理排障先看重定向方法</a></h2>
 <p class="card-summary">区分301、302、303、307和308对请求方法的处理，用curl记录重定向链后再判断代理或节点问题。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-29T09:07:56&#43;08:00">2026-09-29</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-redirect-method-semantics/" aria-label="阅读302 与 307 为什么不一样？代理排障先看重定向方法">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/tls13-zero-rtt-replay/">TLS 1.3 的 0-RTT 为什么不是“免费加速”？先看重放风险</a></h2>
 <p class="card-summary">说明TLS 1.3早期数据如何依赖会话恢复、服务器为何可能拒绝，以及0-RTT重放风险对测试结论的限制。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-28T09:07:13&#43;08:00">2026-09-28</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls13-zero-rtt-replay/" aria-label="阅读TLS 1.3 的 0-RTT 为什么不是“免费加速”？先看重放风险">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/tls-alpn-http2-check/">HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN</a></h2>
 <p class="card-summary">解释TLS握手中的ALPN如何选择h2或HTTP/1.1，并用curl在固定目标下验证协议协商结果。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-27T09:07:02&#43;08:00">2026-09-27</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls-alpn-http2-check/" aria-label="阅读HTTPS 显示 h2 是怎样协商的？看懂 TLS ALPN">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/tls-sni-host-difference/">同一 IP 为什么返回不同证书？SNI 与 Host 的区别</a></h2>
 <p class="card-summary">拆解DNS、连接、TLS SNI、证书校验和HTTP Host的先后关系，避免用改请求头误修证书问题。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-26T09:06:54&#43;08:00">2026-09-26</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/tls-sni-host-difference/" aria-label="阅读同一 IP 为什么返回不同证书？SNI 与 Host 的区别">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/curl-resolve-connect-to/">不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别</a></h2>
 <p class="card-summary">用curl临时指定解析或连接目的地，把DNS、网络连接与TLS校验分开验证，不修改整机hosts。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-25T09:10:15&#43;08:00">2026-09-25</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/curl-resolve-connect-to/" aria-label="阅读不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/http-socks5-mixed-proxy-ports/">HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南</a></h2>
 <p class="card-summary">本地代理端口是应用连接客户端的入口，不等于机场节点协议。区分HTTP CONNECT、SOCKS5与混合端口，再按应用能力验证TCP和UDP。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-22T11:37:22&#43;08:00">2026-09-22</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/http-socks5-mixed-proxy-ports/" aria-label="阅读HTTP代理、SOCKS5和混合端口有什么区别？机场客户端接口选用指南">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/jctj3/">✈️ 网络机场是什么？节点、订阅与线路入门科普</a></h2>
 <p class="card-summary">网络“机场”是提供代理节点、订阅和维护服务的服务商。本文介绍机场、节点、客户端与订阅的区别，解释线路、延迟和速度之间的关系，并说明代理服务的隐私保护边界。</p>
 <div class="card-footer"><span><span>CPU干冒烟了</span><time datetime="2026-09-12T21:07:21&#43;08:00">2026-09-12</time><a class="card-category" href="https://www.zjtf.org/categories/cat1/">机场推荐</a></span><a class="read-more" href="https://www.zjtf.org/posts/jctj3/" aria-label="阅读✈️ 网络机场是什么？节点、订阅与线路入门科普">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/syjc3/">安卓-ClashMeta使用教程</a></h2>
 <p class="card-summary">安卓-ClashMeta使用教程</p>
 <div class="card-footer"><span><span>三千烦恼风</span><time datetime="2026-09-12T09:45:08&#43;08:00">2026-09-12</time><a class="card-category" href="https://www.zjtf.org/categories/syjc1/">使用教程</a></span><a class="read-more" href="https://www.zjtf.org/posts/syjc3/" aria-label="阅读安卓-ClashMeta使用教程">阅读全文 <span aria-hidden="true">↗</span></a></div>
@@ -163,7 +173,7 @@
 
 
 </div>
-<div class="home-rail"></div>
+<div class="home-rail qh-home-ad-rail"></div>
 </main>
 
 </div>

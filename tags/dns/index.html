@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/style.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/advertisements.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/search.css"><script defer src="https://www.zjtf.org/assets/theme/search.js"></script>
-<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css">
+<link rel="stylesheet" href="https://www.zjtf.org/assets/theme/skin-1.1.4.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/seo-1.1.5.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/ads-layout-1.1.7.css"><link rel="stylesheet" href="https://www.zjtf.org/assets/theme/zjtf-layout-fix.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/viewer.css">
 <link rel="stylesheet" href="https://www.zjtf.org/assets/theme/reader.css">
 <link rel="icon" href="https://www.zjtf.org/assets/media/ea741d0f-36f0-42cd-94ed-0f995c811f9d.png">
@@ -37,7 +37,7 @@
 <script defer src="https://www.zjtf.org/assets/theme/image-viewer.js"></script>
 
 <script defer src="https://www.zjtf.org/assets/theme/interactions.js"></script>
-<script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script>
+<script defer src="https://www.zjtf.org/assets/theme/markdown-it.min.js"></script><script defer src="https://www.zjtf.org/assets/theme/qinghang.js"></script><script defer src="https://www.zjtf.org/assets/theme/zjtf-featured.js"></script>
 <meta name="msvalidate.01" content="743B7FA2181CB601906A688B7877E5CB" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4KYE7Y5C6"></script>
@@ -52,7 +52,7 @@
 <script defer src="https://www.zjtf.org/assets/xblog/google-analytics.js" data-xblog-google-analytics="G-D4KYE7Y5C6" data-site-hosts="www.zjtf.org"></script></head>
 
 
-<body class="qh-page">
+<body class="qh-page" data-qh-assets="https://www.zjtf.org/assets/theme/">
 <a class="skip" href="#main">跳到正文</a>
 
 <header class="site-header">
@@ -91,29 +91,33 @@
 
 
 
-<section class="qh-home-article-list" aria-label="文章列表">
+<section id="qh-home-articles" class="qh-home-article-list" aria-label="文章列表">
 <div class="qh-list-heading"><h2>文章列表</h2><span>第 1 页</span></div>
 <section class="article-list" aria-label="文章列表">
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+<figure class="article-cover"><a href="https://www.zjtf.org/posts/doh-dns-traffic-boundary/"><img src="https://www.zjtf.org/assets/media/1677660a-5b06-4f15-a5ea-3c1d5096fdfa.webp" alt="开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法" loading="lazy" decoding="async"></a></figure>
 <h2><a href="https://www.zjtf.org/posts/doh-dns-traffic-boundary/">开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法</a></h2>
 <p class="card-summary">DoH 保护 DNS 查询这一环节，网站连接与客户端接管仍需分别核对，不能用一个开关证明全部流量路径。</p>
 <div class="card-footer"><span><span>酌酒听风</span><time datetime="2026-10-06T09:23:03&#43;08:00">2026-10-06</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/doh-dns-traffic-boundary/" aria-label="阅读开启加密 DNS 就等于用了 VPN 吗？DoH 的保护范围与排障方法">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/curl-resolve-connect-to/">不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别</a></h2>
 <p class="card-summary">用curl临时指定解析或连接目的地，把DNS、网络连接与TLS校验分开验证，不修改整机hosts。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-25T09:10:15&#43;08:00">2026-09-25</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/curl-resolve-connect-to/" aria-label="阅读不改 DNS 怎样测试指定 IP？curl --resolve 与 --connect-to 的区别">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/curl-socks5h-dns-resolution/">socks5与socks5h有什么区别？用curl判断域名在哪一侧解析</a></h2>
 <p class="card-summary">同一个SOCKS代理仅改一个字母就出现不同结果？理解curl的本地解析与代理解析，做受控对照，并明确结果不能证明哪些事情。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-23T13:28:05&#43;08:00">2026-09-23</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/curl-socks5h-dns-resolution/" aria-label="阅读socks5与socks5h有什么区别？用curl判断域名在哪一侧解析">阅读全文 <span aria-hidden="true">↗</span></a></div>
 </article>
 <article class="article-card">
 <span class="card-index" aria-hidden="true"></span>
+
 <h2><a href="https://www.zjtf.org/posts/ipv6-proxy-routing-verification/">IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法</a></h2>
 <p class="card-summary">看到 IPv6 地址不等于代理泄漏。区分 DNS 解析、流量接管与节点出站，按同应用、同目标核对规则和出口，判断是否符合自己的分流预期。</p>
 <div class="card-footer"><span><span>王牌飞行员</span><time datetime="2026-09-20T16:29:32&#43;08:00">2026-09-20</time><a class="card-category" href="https://www.zjtf.org/categories/protocols-network/">协议与网络</a></span><a class="read-more" href="https://www.zjtf.org/posts/ipv6-proxy-routing-verification/" aria-label="阅读IPv6 会绕过机场代理吗？从 DNS 记录到实际出站的排查方法">阅读全文 <span aria-hidden="true">↗</span></a></div>
@@ -127,7 +131,7 @@
 
 
 </div>
-<div class="home-rail"></div>
+<div class="home-rail qh-home-ad-rail"></div>
 </main>
 
 </div>
