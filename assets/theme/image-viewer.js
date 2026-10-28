@@ -76,7 +76,7 @@
       inline: false,
       className: "theme-image-viewer",
       filter: isContentImage,
-      url: (image) => image.currentSrc || image.src,
+      url: (image) => image.getAttribute("data-full-image") || image.currentSrc || image.src,
       // 放大的图片立即加载，不继承正文中的懒加载和响应式缩略图尺寸。
       inheritedAttributes: ["crossOrigin", "decoding", "referrerPolicy"],
       transition: !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
