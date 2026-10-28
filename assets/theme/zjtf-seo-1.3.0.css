@@ -1,0 +1,23 @@
+/* 搜索入口、静态摘要与轻量封面。 */
+.qh-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 12px}
+.qh-topic-grid a{display:flex;flex-direction:column;gap:7px;padding:16px;border:1px solid var(--line);border-radius:8px;color:var(--text);text-decoration:none;background:var(--surface)}
+.qh-topic-grid a:hover{border-color:var(--accent);background:var(--soft)}
+.qh-topic-grid strong{font-size:17px}.qh-topic-grid span,.qh-editorial-link{font-size:13px;color:var(--muted)}
+.qh-editorial-link a{color:var(--muted)}
+.article-card{display:flow-root}.article-card .article-cover{float:right;width:120px;aspect-ratio:16/9;margin:0 0 12px 20px;border-radius:7px}.article-card .article-cover img{width:100%;height:100%;object-fit:cover}
+.qh-page .qh-main>.qh-home-ad-rail{max-height:none;overflow:visible}
+@media(max-width:760px){.qh-topic-grid{gap:9px}.qh-topic-grid a{padding:13px}.qh-topic-grid span{font-size:12px}.article-card .article-cover{width:88px;margin-left:12px}.qh-page-heading h1{font-size:26px}}
+@media(max-width:420px){.qh-topic-grid{grid-template-columns:1fr}}
+.prose img[src$="426ef393-1b7c-438e-b974-c40422656156.webp"]{aspect-ratio:1536/1024;height:auto;}
+.prose img[src$="c638ccbc-1c51-4067-b9d8-4a0007f931e4.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="c32fbfd2-625e-446a-ad53-44dcd2bdfda7.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="95791059-83bc-477e-a03d-6c4ec3397ac0.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="be1480eb-7662-4aa9-8455-5eda989e5f76.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="77a4b87d-69da-4579-a4f3-f2b32b241435.webp"]{aspect-ratio:1536/1024;height:auto;}
+.prose img[src$="5074bd46-db6d-4022-8b91-d67a5c25b527.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="ee801e98-69d0-493e-9f5f-be47013daad5.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="f350fdb6-45f6-4682-b88e-5837af870e79.webp"]{aspect-ratio:1536/1024;height:auto;}
+.prose img[src$="504a1e47-4548-4c63-a554-2b3f2111b956.webp"]{aspect-ratio:1672/941;height:auto;}
+.prose img[src$="7172f4e7-cc2c-4ab5-807b-0eb7bde96801.webp"]{aspect-ratio:1672/941;height:auto;}
+
+.qh-registration{margin:32px 0;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}.qh-registration p{line-height:1.8}.qh-registration [id]{scroll-margin-top:90px}
